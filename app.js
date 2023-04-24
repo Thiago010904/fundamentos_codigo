@@ -38,7 +38,6 @@ app.get('/login', (req, res) => {
 
 // Ruta para mostrar el formulario de registro
 app.get('/register', (req, res) => {
-  if (!req.session.login) { res.redirect('/login'); return; }
   res.render('register');
 });
 app.get('/logout', (req, res) => {
