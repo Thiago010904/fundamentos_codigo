@@ -188,14 +188,13 @@ app.post('/enviar-correo', (req, res) => {
   const username = req.session.userData.username;
   const email = req.session.userData.email;
 
-  const nombre = req.body.nombre;
-  const direccion = req.body.direccion;
-  const numhabs = req.body.numhabs;
-  const fecha = req.body.fecha;
-
   // Configurar el correo electrónico en función del botón seleccionado
   let mailOptions;
   if (botonSeleccionado === 'plomero') {
+    const nombre = req.body.nombre;
+    const direccion = req.body.direccion;
+    const textdescrip = req.body.textdescrip;
+    const fecha = req.body.fecha;
     mailOptions = {
       from: 'auxilium.gestion777',
       to: `${email}`,
@@ -206,6 +205,11 @@ app.post('/enviar-correo', (req, res) => {
       Espero que se encuentre bien. Me pongo en contacto con usted en calidad de representante
       de Auxilium.
 
+      descripcion
+      ${nombre}
+      ${direccion}
+      ${textdescrip}
+      ${fecha}
 
       El cliente ha reportado un problema con su sistema de plomería y ha 
       solicitado su ayuda para solucionarlo. El cliente se encuentra en la siguiente dirección: Carrera 87a #32-81.
@@ -241,6 +245,10 @@ app.post('/enviar-correo', (req, res) => {
     };
   }
   else if (botonSeleccionado === 'fumigador') {
+    const nombre = req.body.nombre;
+    const direccion = req.body.direccion;
+    const numhabs = req.body.numhabs;
+    const fecha = req.body.fecha;
 
     mailOptions = {
       from: 'auxilium.gestion777',
