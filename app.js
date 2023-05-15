@@ -7,11 +7,6 @@ const app = express();
 const ejs = require('ejs');
 app.set('view engine', 'ejs');
 
-// Definir las rutas de tu aplicación a partir de aquí
-// ...
-
-
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(session({
@@ -23,10 +18,67 @@ app.engine('html', ejs.renderFile);
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
+
+/* GET METHODS */
+
 app.get('/', (req, res) => {
   if (!req.session.login) { res.redirect('/login'); return; }
   res.redirect('/home');
 });
+
+
+app.get('/error', (req, res) => {
+  res.render('error');
+});
+
+
+// SERVICIOS //
+app.get('/plomero', (req, res) => {
+  if (!req.session.login) { res.redirect('/login'); return; }
+  res.render('servicios/plomero');
+});
+
+app.get('/decorador', (req, res) => {
+  if (!req.session.login) { res.redirect('/login'); return; }
+  res.render('servicios/decorador');
+});
+
+app.get('/fumigador', (req, res) => {
+  if (!req.session.login) { res.redirect('/login'); return; }
+  res.render('servicios/fumigador');
+});
+
+app.get('/reparacion', (req, res) => {
+  if (!req.session.login) { res.redirect('/login'); return; }
+  res.render('servicios/reparacion');
+});
+
+app.get('/carpinteria', (req, res) => {
+  if (!req.session.login) { res.redirect('/login'); return; }
+  res.render('servicios/carpinteria');
+});
+
+app.get('/electricidad', (req, res) => {
+  if (!req.session.login) { res.redirect('/login'); return; }
+  res.render('servicios/electricidad');
+});
+
+app.get('/pintura', (req, res) => {
+  if (!req.session.login) { res.redirect('/login'); return; }
+  res.render('servicios/pintura');
+});
+
+app.get('/limpieza', (req, res) => {
+  if (!req.session.login) { res.redirect('/login'); return; }
+  res.render('servicios/limpieza');
+});
+
+app.get('/albanil', (req, res) => {
+  if (!req.session.login) { res.redirect('/login'); return; }
+  res.render('servicios/albanil');
+});
+
+
 
 app.get('/home', (req, res) => {
   if (!req.session.login) { res.redirect('/login'); return; }
@@ -34,6 +86,39 @@ app.get('/home', (req, res) => {
 
   res.render('home');
 });
+
+// Ruta para mostrar el formulario de inicio de sesión
+app.get('/login', (req, res) => {
+  res.render('login');
+});
+
+app.get('/logout', (req, res) => {
+  // Elimina la información de sesión del usuario
+  req.session.destroy();
+
+  // Redirige a la página de inicio de sesión
+  res.redirect('/login');
+});
+
+app.get('/perfil', (req, res) => {
+  if (!req.session.login) { res.redirect('/login'); return; }
+  var Dataview = {
+    'user': req.session.userData.username,
+    'email': req.session.userData.email
+  }
+  res.render('perfil', Dataview);
+});
+
+// Ruta para mostrar el formulario de registro
+app.get('/register', (req, res) => {
+  res.render('register');
+});
+
+
+app.get('/register-error', (req, res) => {
+  res.render('register-error');
+});
+
 
 app.get('/services', (req, res) => {
   if (!req.session.login) { res.redirect('/login'); return; }
@@ -43,70 +128,52 @@ app.get('/services', (req, res) => {
   res.render('services', Dataview);
 });
 
-// Ruta para mostrar el formulario de inicio de sesión
-app.get('/login', (req, res) => {
-  res.render('login');
-});
 
-app.get('/error', (req, res) => {z|
-  res.render('error');
-});
-
-app.get('/perfil', (req, res) => {
-  var Dataview = {
-    'user': req.session.username
-  }
-  res.render('perfil', Dataview);
-});
-
-// Ruta para mostrar el formulario de registro
-app.get('/register', (req, res) => {
-  res.render('register');
-});
-app.get('/logout', (req, res) => {
-  // Elimina la información de sesión del usuario
-  req.session.destroy();
-
-  // Redirige a la página de inicio de sesión
-  res.redirect('/login');
-});
+/* POST METHODS */
 
 // Registro de usuario
 app.post('/register', (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, docNumber, email } = req.body;
 
-  // Verifica si el usuario ya existe en el archivo users.json
-  const users = JSON.parse(fs.readFileSync('./users.json', 'utf-8'));
-  if (users[username]) {
-    return res.status(409).send('El usuario ya existe');
+  try {
+    // Verifica si el usuario ya existe en el archivo users.json
+    const users = JSON.parse(fs.readFileSync('./users.json', 'utf-8'));
+    if (users[docNumber]) {
+      throw new Error('El usuario ya existe');
+    }
+
+    users[docNumber] = {password, username, email};
+    fs.writeFileSync('./users.json', JSON.stringify(users));
+
+    res.redirect('/login');
+  } catch (error) {
+    res.redirect('register-error');
   }
-
-  users[username] = password;
-  fs.writeFileSync('./users.json', JSON.stringify(users));
-
-  res.redirect('/login');
 });
+
 
 // Inicio de sesión de usuario
 app.post('/login', (req, res) => {
-  console.log(req.body)
-  const { username, password } = req.body;
 
+  const { docNumber, password } = req.body;
+  //console.log('REQ.BODY', req.body)
+  //console.log('DOCUNUMBER', docNumber)
+  //console.log('PASSWORD', password)
   // Verifica si el usuario existe en el archivo users.json
   const users = JSON.parse(fs.readFileSync('./users.json', 'utf-8'));
-  if (users[username] === password) {
+  if (users[docNumber] && users[docNumber].password === password) {
     // Autentica al usuario
 
     req.session.login = 1;
-    req.session.username = username;
+    req.session.userData = users[docNumber]
+    req.session.docNumber = docNumber;
 
+    console.log('REQ.SESSION.USERDATA', req.session.userData)
     // Redirige a la página de inicio
     res.redirect('home');
   } else {
-    res.redirect('error')
+    res.redirect('error');
   }
-  console.log("REQ.SESSION ", req.session)
-
 });
 
 
@@ -128,7 +195,7 @@ app.post('/enviar-correo', (req, res) => {
   });
   // Obtener el valor del botón seleccionado
   const botonSeleccionado = req.body.button;
-  const username = req.session.username;
+  const username = req.session.userData.username;
 
 
   // Configurar el correo electrónico en función del botón seleccionado

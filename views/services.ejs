@@ -32,7 +32,7 @@
 
     button,
     button div {
-        transition: 0.6s cubic-bezier(.16, 1, .3, 1);
+        transition: 0.6s cubic-bezier(.16, 1, .3, 1);   
         
     }
 
@@ -79,209 +79,213 @@
         margin-top: 20px;
     }
     .img-fluid {
-        width: 50%;
+        width: 180px;
+        height: 180px;
         border-radius: 50px;
     }
 </style>
-
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid d-flex flex-row justify-content-between">
+      <div>
+          <img src="http://drive.google.com/uc?export=view&id=1Rd8XF2WRN4WcJmcSmr5ilO1h3MbPfCab" alt="">
+      </div>
+      <div class="collapse navbar-collapse" id="navbarNav" style="margin-left: 700px;">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://localhost:7777/services">Nuestros Servicios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://localhost:7777/perfil">Perfil</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+</nav>
 <body>
-    <div class="text-center">
-        <h1 class="display-4">Nuestros servicios</h1>
-    </div>
     <div class="row">
         <div class="col-md-4">
             <div class="d-flex flex-column align-items-center mx-auto">
-                <img src="https://i.pinimg.com/564x/73/a6/71/73a671f0ae74db87c779e9ea3f91f22b.jpg" class="img-fluid">
-
-                <button onclick="alerta('plomero')">
-                    <div>
-                        <span>
+                <img src="https://i.pinimg.com/564x/55/98/e9/5598e9e05451cfe19efeee89cc063953.jpg" class="img-fluid">
+                <a href="/plomero">
+                    <button>
+                        <div>
+                            <span>
                             <p>Solicitar</p>
-                        </span>
-                    </div>
-                    <div>
-                        <span>
+                            </span>
+                        </div>
+                        <div>
+                            <span>
                             <p>Plomero</p>
-                        </span>
-                    </div>
-                </button>
+                            </span>
+                        </div>
+                    </button>
+                </a>
             </div>
         </div>
 
         <div class="col-md-4">
             <div class="d-flex flex-column align-items-center mx-auto">
-                <img src="https://i.pinimg.com/564x/1a/8c/3f/1a8c3f3eef072662771d9056afda67f0.jpg" class="img-fluid">
-                <button onclick="alerta('decorador')">
-                    <div>
-                        <span>
+                <img src="https://i.pinimg.com/564x/6b/94/fc/6b94fcf3a3e8873c59b6cb9329968c4c.jpg" class="img-fluid">
+                <a href="/decorador">
+                    <button>
+                        <div>
+                            <span>
                             <p>Solicitar</p>
-                        </span>
-                    </div>
-                    <div>
-                        <span>
+                            </span>
+                        </div>
+                        <div>
+                            <span>
                             <p>Decorador</p>
-                        </span>
-                    </div>
-                </button>
+                            </span>
+                        </div>
+                    </button>
+                </a>
             </div>
         </div>
         <div class="col-md-4">
             <div class="d-flex flex-column align-items-center mx-auto">
-                <img src="https://i.pinimg.com/564x/a2/34/0b/a2340b858296fe4e5373f623abd72b01.jpg" class="img-fluid">
-                <button onclick="alerta('fumigador')">
-                    <div>
-                        <span>
+                <img src="https://i.pinimg.com/564x/23/1b/0f/231b0fd6df7ee21b021b2bd269221976.jpg" class="img-fluid">
+                <a href="/fumigador">
+                    <button>
+                        <div>
+                            <span>
                             <p>Solicitar</p>
-                        </span>
-                    </div>
-                    <div>
-                        <span>
+                            </span>
+                        </div>
+                        <div>
+                            <span>
                             <p>Fumigador</p>
-                        </span>
-                    </div>
-                </button>
+                            </span>
+                        </div>
+                    </button>
+                </a>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-4">
             <div class="d-flex flex-column align-items-center mx-auto">
-                <img src="https://i.pinimg.com/564x/bb/36/21/bb3621817494cb4c5d875927e2dc60f6.jpg" class="img-fluid">
-                <button onclick="alerta('reparacion_AC')">
+             <img src="https://i.pinimg.com/564x/08/96/78/0896789cfb91b2e9282cefb4b38a2fd3.jpg" class="img-fluid">
+             <a href="/reparacion">
+                <button>
                     <div>
                         <span>
-                            <p>Solicitar</p>
+                        <p>Solicitar</p>
                         </span>
                     </div>
                     <div>
                         <span>
-                            <p>Reparacion</p>
+                        <p>Reparacion</p>
                         </span>
                     </div>
                 </button>
+            </a>
             </div>
         </div>
         <div class="col-md-4">
             <div class="d-flex flex-column align-items-center mx-auto">
-                <img src="https://i.pinimg.com/564x/0b/e1/fd/0be1fd47ad8b62d82580af6b56f4f929.jpg" class="img-fluid">
-                <button onclick="alerta('carpintero')">
-                    <div>
-                        <span>
+                <img src="https://i.pinimg.com/564x/db/2e/b2/db2eb2e6b63112a52502134ec3d06103.jpg" class="img-fluid">
+                <a href="/carpinteria">
+                    <button>
+                        <div>
+                            <span>
                             <p>Solicitar</p>
-                        </span>
-                    </div>
-                    <div>
-                        <span>
-                            <p>Carpintero</p>
-                        </span>
-                    </div>
-                </button>
+                            </span>
+                        </div>
+                        <div>
+                            <span>
+                            <p>Carpinteria</p>
+                            </span>
+                        </div>
+                    </button>
+                </a>
             </div>
         </div>
         <div class="col-md-4">
             <div class="d-flex flex-column align-items-center mx-auto">
-                <img src="https://i.pinimg.com/564x/ed/aa/ff/edaafff145cb2cf36533c1e76b3f244e.jpg" class="img-fluid">
-                <button onclick="alerta('electricista')">
-                    <div>
-                        <span>
+                <img src="https://i.pinimg.com/564x/ee/0d/e8/ee0de87787fc2cd6c592a43547d073d0.jpg" class="img-fluid">
+                <a href="/electricidad">
+                    <button>
+                        <div>
+                            <span>
                             <p>Solicitar</p>
-                        </span>
-                    </div>
-                    <div>
-                        <span>
+                            </span>
+                        </div>
+                        <div>
+                            <span>
                             <p>Electricista</p>
-                        </span>
-                    </div>
-                </button>
+                            </span>
+                        </div>
+                    </button>
+                </a>
             </div>
         </div>
-
+        
         <div class="row">
             <div class="col-md-4">
                 <div class="d-flex flex-column align-items-center mx-auto">
-                    <img src="https://i.pinimg.com/564x/86/84/44/8684448cdffe647cd912c1cdca8e510c.jpg" class="img-fluid">
-                    <button onclick="alerta('pintor')">
-                        <div>
-                            <span>
+                    <img src="https://i.pinimg.com/564x/17/21/2a/17212aabcaaed815b3c1849ff21364ee.jpg" class="img-fluid">
+                    <a href="/pintura">
+                        <button>
+                            <div>
+                                <span>
                                 <p>Solicitar</p>
-                            </span>
-                        </div>
-                        <div>
-                            <span>
+                                </span>
+                            </div>
+                            <div>
+                                <span>
                                 <p>Pintor</p>
-                            </span>
-                        </div>
-                    </button>
+                                </span>
+                            </div>
+                        </button>
+                    </a>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="d-flex flex-column align-items-center mx-auto">
-                    <img src="https://i.pinimg.com/564x/aa/5e/ac/aa5eac320f11694664350fae9ceb2e8f.jpg" class="img-fluid">
-                    <button onclick="alerta('limpieza')">
+                    <img src="https://i.pinimg.com/564x/c8/af/1c/c8af1cd5f635344df79e94860b0fc148.jpg" class="img-fluid">
+                <a href="/limpieza">
+                    <button>
                         <div>
                             <span>
-                                <p>Solicitar</p>
+                            <p>Solicitar</p>
                             </span>
                         </div>
                         <div>
                             <span>
-                                <p>Limpieza</p>
+                            <p>Limpieza</p>
                             </span>
                         </div>
                     </button>
+                </a>
                 </div>
             </div>
-
+            
             <div class="col-md-4">
                 <div class="d-flex flex-column align-items-center mx-auto">
-                    <img src="https://i.pinimg.com/564x/e2/2e/7f/e22e7f52e053ff692ae1d5c2ad3ebf65.jpg" class="img-fluid">
-                    <button onclick="alerta('albañil')">
-                        <div>
-                            <span>
+                    <img src="https://i.pinimg.com/564x/05/cb/de/05cbde457510e80f90aab8f657307f9a.jpg" class="img-fluid">
+                    <a href="/albanil">
+                        <button>
+                            <div>
+                                <span>
                                 <p>Solicitar</p>
-                            </span>
-                        </div>
-                        <div>
-                            <span>
+                                </span>
+                            </div>
+                            <div>
+                                <span>
                                 <p>Albañil</p>
-                            </span>
-                        </div>
-                    </button>
+                                </span>
+                            </div>
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.js"></script>
-        <script>
-            function alerta(funcion) {
-                const botonSeleccionado = funcion;
-                Swal.fire({
-                    title: '¿Estas seguro?',
-                    text: "",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Si, hacer pedido'
-                })
-                    .then((result) => {
-                        if (result.isConfirmed) {
-                            fetch('/enviar-correo', {
-                                method: 'POST',
-                                headers: {
-                                'Content-Type': 'application/json'
-                                },
-                                body: JSON.stringify({ button: botonSeleccionado })
-                            })
-                            Swal.fire(
-                                'Pedido realizado',
-                                '',
-                                'success'
-                            )
-                        }
-                    })
-            }
-        </script>
-</body>
+      
+    </body>
 
 </html>
