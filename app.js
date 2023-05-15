@@ -31,7 +31,6 @@ app.get('/error', (req, res) => {
   res.render('error');
 });
 
-
 // SERVICIOS //
 app.get('/plomero', (req, res) => {
   if (!req.session.login) { res.redirect('/login'); return; }
@@ -77,8 +76,6 @@ app.get('/albanil', (req, res) => {
   if (!req.session.login) { res.redirect('/login'); return; }
   res.render('servicios/albanil');
 });
-
-
 
 app.get('/home', (req, res) => {
   if (!req.session.login) { res.redirect('/login'); return; }
@@ -142,7 +139,7 @@ app.post('/register', (req, res) => {
       throw new Error('El usuario ya existe');
     }
 
-    users[docNumber] = {password, username, email};
+    users[docNumber] = { password, username, email };
     fs.writeFileSync('./users.json', JSON.stringify(users));
 
     res.redirect('/login');
@@ -156,9 +153,6 @@ app.post('/register', (req, res) => {
 app.post('/login', (req, res) => {
 
   const { docNumber, password } = req.body;
-  //console.log('REQ.BODY', req.body)
-  //console.log('DOCUNUMBER', docNumber)
-  //console.log('PASSWORD', password)
   // Verifica si el usuario existe en el archivo users.json
   const users = JSON.parse(fs.readFileSync('./users.json', 'utf-8'));
   if (users[docNumber] && users[docNumber].password === password) {
@@ -175,12 +169,8 @@ app.post('/login', (req, res) => {
     res.redirect('error');
   }
 });
-
-
 app.post('/enviar-correo', (req, res) => {
   const nodemailer = require('nodemailer');
-
-
   // Configura el cliente SMTP
   const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -196,16 +186,21 @@ app.post('/enviar-correo', (req, res) => {
   // Obtener el valor del botón seleccionado
   const botonSeleccionado = req.body.button;
   const username = req.session.userData.username;
+  const email = req.session.userData.email;
 
+  const nombre = req.body.nombre;
+  const direccion = req.body.direccion;
+  const numhabs = req.body.numhabs;
+  const fecha = req.body.fecha;
 
   // Configurar el correo electrónico en función del botón seleccionado
   let mailOptions;
   if (botonSeleccionado === 'plomero') {
     mailOptions = {
       from: 'auxilium.gestion777',
-      to: 'juanpabloaguirreosorio@gmail.com',
+      to: `${email}`,
       subject: `Solicitud de servicio de plomería para el cliente ${username}`,
-      text:`
+      text: `
       Estimado/a Agente,
 
       Espero que se encuentre bien. Me pongo en contacto con usted en calidad de representante
@@ -224,9 +219,9 @@ app.post('/enviar-correo', (req, res) => {
   } else if (botonSeleccionado === 'decorador') {
     mailOptions = {
       from: 'auxilium.gestion777',
-      to: 'juanpabloaguirreosorio@gmail.com',
+      to: `${email}`,
       subject: `Solicitud de servicio de decoración para el cliente ${username}`,
-      text:`
+      text: `
       Estimado/a Agente,
 
       Espero que se encuentre bien. Me pongo en contacto con usted en calidad de representante 
@@ -244,10 +239,12 @@ app.post('/enviar-correo', (req, res) => {
       Auxilium Gestión`
 
     };
-  } else if (botonSeleccionado === 'fumigador') {
+  }
+  else if (botonSeleccionado === 'fumigador') {
+
     mailOptions = {
       from: 'auxilium.gestion777',
-      to: 'juanpabloaguirreosorio@gmail.com',
+      to: `${email}`,
       subject: `Solicitud de servicio de control de plagas para el cliente ${username}`,
       text: `
       Estimado/a Agente,
@@ -255,19 +252,21 @@ app.post('/enviar-correo', (req, res) => {
       Espero que se encuentre bien. Me pongo en contacto con usted en calidad de representante
       de Auxilium.
 
-      El cliente ha reportado un problema de plagas en su hogar y ha solicitado su ayuda para
-      solucionarlo. Se encuentra en la siguiente dirección: Carrera 87a #32-81.
+      El cliente ${nombre} ha solicitado un servicio de fumigación en la siguiente dirección: ${direccion}.
+      La solicitud incluye ${numhabs} habitaciones y la fecha de servicio deseada es el ${fecha}.
+
+      Agradecemos de antemano su colaboración.
 
       Saludos cordiales,
 
       Auxilium Gestion`
     };
-    
+
   }
   else if (botonSeleccionado === 'reparacion_AC') {
     mailOptions = {
       from: 'auxilium.gestion777',
-      to: 'juanpabloaguirreosorio@gmail.com',
+      to: `${email}`,
       subject: `Solicitud de servicio de reparación de aire acondicionado para  ${username}`,
       text: `
       Estimado/a Agente,
@@ -284,10 +283,10 @@ app.post('/enviar-correo', (req, res) => {
 
       Auxilium Gestion`
     };
-  }else if (botonSeleccionado === 'carpintero') {
+  } else if (botonSeleccionado === 'carpintero') {
     mailOptions = {
       from: 'auxilium.gestion777',
-      to: 'juanpabloaguirreosorio@gmail.com',
+      to: `${email}`,
       subject: `Solicitud de servicio de carpinteríapara para el cliente ${username}`,
       text: `
       Estimado/a Agente,
@@ -304,10 +303,10 @@ app.post('/enviar-correo', (req, res) => {
 
       Auxilium Gestion`
     };
-  }else if (botonSeleccionado === 'electricista') {
+  } else if (botonSeleccionado === 'electricista') {
     mailOptions = {
       from: 'auxilium.gestion777',
-      to: 'juanpabloaguirreosorio@gmail.com',
+      to: `${email}`,
       subject: `Solicitud de servicio de electricidad para el cliente ${username}`,
       text: `
       Estimado/a Agente,
@@ -326,10 +325,10 @@ app.post('/enviar-correo', (req, res) => {
 
       Auxilium Gestion`
     };
-  }else if (botonSeleccionado === 'pintor') {
+  } else if (botonSeleccionado === 'pintor') {
     mailOptions = {
       from: 'auxilium.gestion777',
-      to: 'juanpabloaguirreosorio@gmail.com',
+      to: `${email}`,
       subject: `Solicitud de servicio de pintura para el cliente ${username}`,
       text: `
       Estimado/a Agente,
@@ -350,10 +349,10 @@ app.post('/enviar-correo', (req, res) => {
 
       Auxilium Gestion`
     };
-  }else if (botonSeleccionado === 'limpieza') {
+  } else if (botonSeleccionado === 'limpieza') {
     mailOptions = {
       from: 'auxilium.gestion777',
-      to: 'juanpabloaguirreosorio@gmail.com',
+      to: `${email}`,
       subject: `Solicitud de servicio de limpieza para el cliente ${username}`,
       text: `
       Estimado/a Agente,
@@ -375,10 +374,10 @@ app.post('/enviar-correo', (req, res) => {
 
       Auxilium Gestion`
     };
-  }else if (botonSeleccionado === 'albañil') {
+  } else if (botonSeleccionado === 'albañil') {
     mailOptions = {
       from: 'auxilium.gestion777',
-      to: 'juanpabloaguirreosorio@gmail.com',
+      to: `${email}`,
       subject: ` Solicitud de servicios de albañilería para el cliente ${username}`,
       text: `
       Estimado/a Agente,
@@ -405,7 +404,7 @@ app.post('/enviar-correo', (req, res) => {
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
       console.log(error);
-      res.send('Error al enviar el correo electrónico');
+      res.send('Error al enviar el correo electrónico uwu');
     } else {
       console.log('Correo electrónico enviado: ' + info.response);
       res.send('Correo electrónico enviado');
