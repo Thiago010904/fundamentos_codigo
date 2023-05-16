@@ -133,6 +133,10 @@
                 <textarea class="form-control" name="textdescrip" id="textdescrip">  </textarea>
               </div>
               <div class="col-sm-5">
+                <label for="">Télefono</label>
+                <input type="number" class="form-control" name="phoneNumber" id="phoneNumber">
+              </div>
+              <div class="col-sm-5">
                 <label for="">Fecha</label>
                 <input type="date" class="form-control" name="fecha" id="fecha">
               </div>
@@ -170,6 +174,7 @@
       const nombre = document.getElementById('nombre').value;
       const direccion = document.getElementById('direccion').value;
       const textdescrip = document.getElementById('textdescrip').value;
+      const phoneNumber = document.getElementById('phoneNumber').value;
       const fecha = document.getElementById('fecha').value;
       Swal.fire({
         title: '¿Estas seguro?',
@@ -187,7 +192,7 @@
               headers: {
                 'Content-Type': 'application/json'
               },
-              body: JSON.stringify({ button: botonSeleccionado, nombre: nombre, direccion: direccion, textdescrip: textdescrip, fecha: fecha })
+              body: JSON.stringify({ button: botonSeleccionado, nombre: nombre, direccion: direccion, jobdescrip: jobdescrip, phoneNumber: phoneNumber, fecha: fecha })
             })
 
             Swal.fire(

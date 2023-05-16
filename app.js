@@ -194,6 +194,7 @@ app.post('/enviar-correo', (req, res) => {
     const nombre = req.body.nombre;
     const direccion = req.body.direccion;
     const textdescrip = req.body.textdescrip;
+    const phoneNumber = req.body.phoneNumber;
     const fecha = req.body.fecha;
     mailOptions = {
       from: 'auxilium.gestion777',
@@ -205,14 +206,15 @@ app.post('/enviar-correo', (req, res) => {
       Espero que se encuentre bien. Me pongo en contacto con usted en calidad de representante
       de Auxilium.
 
-      descripcion
-      ${nombre}
-      ${direccion}
-      ${textdescrip}
-      ${fecha}
+      El cliente ${username} ha reportado un problema con su sistema de plomería y ha 
+      solicitado su ayuda para solucionarlo. El cliente se encuentra en la siguiente dirección: ${direccion}
+      y la fecha de servicio deseada es el ${fecha}.
 
-      El cliente ha reportado un problema con su sistema de plomería y ha 
-      solicitado su ayuda para solucionarlo. El cliente se encuentra en la siguiente dirección: Carrera 87a #32-81.
+      El problema que ha reportado el cliente es el siguiente:
+
+      -${textdescrip}
+
+      Numero de celular: ${phoneNumber}
 
       Agradecemos de antemano su colaboración.
 
@@ -221,6 +223,11 @@ app.post('/enviar-correo', (req, res) => {
       Auxilium Gestion`
     };
   } else if (botonSeleccionado === 'decorador') {
+    const nombre = req.body.nombre;
+    const direccion = req.body.direccion;
+    const estildeco = req.body.estildeco;
+    const phoneNumber = req.body.phoneNumber;
+    const fecha = req.body.fecha;
     mailOptions = {
       from: 'auxilium.gestion777',
       to: `${email}`,
@@ -231,10 +238,14 @@ app.post('/enviar-correo', (req, res) => {
       Espero que se encuentre bien. Me pongo en contacto con usted en calidad de representante 
       de Auxilium.
 
-      El cliente ha solicitado sus servicios de decoración para su hogar, ubicado en la siguiente dirección: Carrera 87a #32-81.
+      El cliente ${username} ha solicitado sus servicios de decoración para su hogar, ubicado en la siguiente dirección: ${direccion}
+      y la fecha de servicio deseada es el ${fecha}.
 
-      El cliente ha especificado que desea hacer una remodelación completa de su sala de estar y necesita su 
-      asesoría en cuanto a la selección de muebles, colores y decoración.
+      El cliente ha especificado lo siguiente:
+
+      -${estildeco}
+
+      Numero de celular: ${phoneNumber}
 
       Agradecemos de antemano su colaboración.
 
@@ -248,6 +259,7 @@ app.post('/enviar-correo', (req, res) => {
     const nombre = req.body.nombre;
     const direccion = req.body.direccion;
     const numhabs = req.body.numhabs;
+    const phoneNumber = req.body.phoneNumber;
     const fecha = req.body.fecha;
 
     mailOptions = {
@@ -263,6 +275,8 @@ app.post('/enviar-correo', (req, res) => {
       El cliente ${nombre} ha solicitado un servicio de fumigación en la siguiente dirección: ${direccion}.
       La solicitud incluye ${numhabs} habitaciones y la fecha de servicio deseada es el ${fecha}.
 
+      Numero de celular: ${phoneNumber}
+
       Agradecemos de antemano su colaboración.
 
       Saludos cordiales,
@@ -271,19 +285,30 @@ app.post('/enviar-correo', (req, res) => {
     };
 
   }
-  else if (botonSeleccionado === 'reparacion_AC') {
+  else if (botonSeleccionado === 'reparacion') {
+    const nombre = req.body.nombre;
+    const direccion = req.body.direccion;
+    const textdescrip = req.body.textdescrip;
+    const phoneNumber = req.body.phoneNumber;
+    const fecha = req.body.fecha;
     mailOptions = {
       from: 'auxilium.gestion777',
       to: `${email}`,
-      subject: `Solicitud de servicio de reparación de aire acondicionado para  ${username}`,
+      subject: `Solicitud de servicio de reparación para  ${username}`,
       text: `
       Estimado/a Agente,
 
       Espero que se encuentre bien. Me pongo en contacto con usted en calidad de representante 
       de Auxilium.
 
-      El cliente ha reportado un problema con su sistema de aire acondicionado y ha 
-      solicitado su ayuda para solucionarlo. El cliente se encuentra en la siguiente dirección: Carrera 87a #32-81.
+      El cliente ${username} ha solicitado un servicio de reparacion y necesita de su ayuda para solucionarlo. 
+      El cliente se encuentra en la siguiente dirección: ${direccion} y la fecha de servicio deseada es el ${fecha}.
+
+      El problema que ha reportado el cliente es el siguiente:
+
+      -${textdescrip}
+
+      Numero de celular: ${phoneNumber}
 
       Le agradecemos su pronta atención a este asunto.
 
@@ -292,6 +317,11 @@ app.post('/enviar-correo', (req, res) => {
       Auxilium Gestion`
     };
   } else if (botonSeleccionado === 'carpintero') {
+    const nombre = req.body.nombre;
+    const direccion = req.body.direccion;
+    const textdescrip = req.body.textdescrip;
+    const phoneNumber = req.body.phoneNumber;
+    const fecha = req.body.fecha;
     mailOptions = {
       from: 'auxilium.gestion777',
       to: `${email}`,
@@ -302,8 +332,14 @@ app.post('/enviar-correo', (req, res) => {
       Espero que se encuentre bien. Me pongo en contacto con usted en calidad de representante 
       de Auxilium.
 
-      El cliente ha reportado un problema con un mueble en su hogar y ha solicitado 
-      su ayuda para repararlo. El cliente se encuentra en la siguiente dirección: Carrera 87a #32-81.
+      El cliente ${username} ha reportado un problema con un mueble en su hogar y ha solicitado 
+      su ayuda para repararlo. El cliente se encuentra en la siguiente dirección: ${direccion} y la fecha de servicio deseada es el ${fecha}.
+
+      El problema que ha reportado el cliente es el siguiente:
+
+      -${textdescrip}
+
+      Numero de celular: ${phoneNumber}
 
       Agradecemos de antemano su colaboración y profesionalismo.
 
@@ -312,6 +348,11 @@ app.post('/enviar-correo', (req, res) => {
       Auxilium Gestion`
     };
   } else if (botonSeleccionado === 'electricista') {
+    const nombre = req.body.nombre;
+    const direccion = req.body.direccion;
+    const problemdescrip = req.body.problemdescrip;
+    const phoneNumber = req.body.phoneNumber;
+    const fecha = req.body.fecha;
     mailOptions = {
       from: 'auxilium.gestion777',
       to: `${email}`,
@@ -322,10 +363,14 @@ app.post('/enviar-correo', (req, res) => {
       Espero que se encuentre bien. Me pongo en contacto con usted en calidad de representante 
       de Auxilium.
 
-      El cliente ha reportado un problema con su sistema eléctrico y ha 
-      solicitado su ayuda para solucionarlo. El cliente se encuentra en la siguiente dirección: Carrera 87a #32-81.
+      El cliente ${username} ha reportado un problema con su sistema eléctrico y ha 
+      solicitado su ayuda para solucionarlo. El cliente se encuentra en la siguiente dirección: ${direccion} y la fecha de servicio deseada es el ${fecha}.
 
-      El problema que ha reportado el cliente es el siguiente: [descripción del problema].
+      El problema que ha reportado el cliente es el siguiente:
+
+        -${problemdescrip}
+
+      Numero de celular: ${phoneNumber}
 
       Agradecemos de antemano su colaboración.
 
@@ -334,6 +379,11 @@ app.post('/enviar-correo', (req, res) => {
       Auxilium Gestion`
     };
   } else if (botonSeleccionado === 'pintor') {
+    const nombre = req.body.nombre;
+    const direccion = req.body.direccion;
+    const jobdescrip = req.body.jobdescrip;
+    const phoneNumber = req.body.phoneNumber;
+    const fecha = req.body.fecha;
     mailOptions = {
       from: 'auxilium.gestion777',
       to: `${email}`,
@@ -344,12 +394,14 @@ app.post('/enviar-correo', (req, res) => {
       Espero que se encuentre bien. Me pongo en contacto con usted en calidad de representante 
       de Auxilium.
 
-      El cliente ha solicitado los servicios de un pintor para realizar trabajos en su 
-      domicilio. La dirección del cliente es la siguiente: Carrera 87a #32-81.
+      El cliente ${username} ha solicitado los servicios de un pintor para realizar trabajos en su 
+      domicilio. La dirección del cliente es la siguiente: ${direccion} y la fecha de servicio deseada es el ${fecha}.
 
       El cliente necesita los siguientes trabajos de pintura:
 
-        - Fachada completa
+        - ${jobdescrip}
+
+      Numero de celular: ${phoneNumber}
 
       Agradecemos de antemano su colaboración.
       
@@ -358,6 +410,11 @@ app.post('/enviar-correo', (req, res) => {
       Auxilium Gestion`
     };
   } else if (botonSeleccionado === 'limpieza') {
+    const nombre = req.body.nombre;
+    const direccion = req.body.direccion;
+    const numhabs = req.body.numhabs;
+    const phoneNumber = req.body.phoneNumber;
+    const fecha = req.body.fecha;
     mailOptions = {
       from: 'auxilium.gestion777',
       to: `${email}`,
@@ -368,13 +425,11 @@ app.post('/enviar-correo', (req, res) => {
       Espero que se encuentre bien. Me pongo en contacto con usted en calidad de representante 
       de Auxilium.
 
-      El cliente ha solicitado un servicio de limpieza en su hogar ubicado en la 
-      siguiente dirección: Carrera 87a #32-81. 
-      
-      La limpieza debe incluir los siguientes detalles:
+      El cliente ${username} ha solicitado un servicio de limpieza en su hogar ubicado en la 
+      siguiente dirección: ${direccion}.
+      La solicitud incluye ${numhabs} habitaciones y la fecha de servicio deseada es el ${fecha}.
 
-        - Limpieza general
-        - Ventanas y vidrios
+      Numero de celular: ${phoneNumber}
 
       Agradecemos de antemano su colaboración.
       
@@ -383,6 +438,11 @@ app.post('/enviar-correo', (req, res) => {
       Auxilium Gestion`
     };
   } else if (botonSeleccionado === 'albañil') {
+    const nombre = req.body.nombre;
+    const direccion = req.body.direccion;
+    const jobdescrip = req.body.jobdescrip;
+    const phoneNumber = req.body.phoneNumber;
+    const fecha = req.body.fecha;
     mailOptions = {
       from: 'auxilium.gestion777',
       to: `${email}`,
@@ -393,12 +453,15 @@ app.post('/enviar-correo', (req, res) => {
       Espero que se encuentre bien. Me pongo en contacto con usted en calidad de representante 
       de Auxilium.
 
-      El cliente ha reportado un problema con una pared en su hogar y ha solicitado 
-      su ayuda para solucionarlo. El cliente se encuentra en la siguiente dirección: Carrera 87a #32-81.
-      
+      El cliente ${username} ha reportado un problema con una pared en su hogar y ha solicitado 
+      su ayuda para solucionarlo. El cliente se encuentra en la siguiente dirección: ${direccion} 
+      y la fecha de servicio deseada es el ${fecha}.
+
       El problema que ha reportado el cliente es el siguiente: 
       
-      - Humedad en techo.
+      - ${jobdescrip}
+      
+      Numero de celular: ${phoneNumber}
 
       Agradecemos de antemano su colaboración.
       
