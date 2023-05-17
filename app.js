@@ -192,13 +192,13 @@ app.post('/enviar-correo', (req, res) => {
   const username = req.session.userData.username;
   const email = req.session.userData.email;
 
-  function correoAleatorio(){
+  function correoAleatorio() {
     var listaCorreos = ['alejandromarin203@gmail.com', 'santiagoxox09@gmail.com']
     const indiceAleatorio = Math.floor(Math.random() * listaCorreos.length);
     return listaCorreos[indiceAleatorio]
   }
 
-  
+
 
   // Configurar el correo electrónico en función del botón seleccionado
   let mailOptions;
@@ -208,72 +208,87 @@ app.post('/enviar-correo', (req, res) => {
     const textdescrip = req.body.textdescrip;
     const phoneNumber = req.body.phoneNumber;
     const fecha = req.body.fecha;
+    const rechazarLink = `http://localhost:7777/rechazo?nombre=${encodeURIComponent(nombre)}&direccion=${encodeURIComponent(direccion)}&textdescrip=${encodeURIComponent(textdescrip)}&phoneNumber=${encodeURIComponent(phoneNumber)}&botonSeleccionado=${encodeURIComponent(botonSeleccionado)}&fecha=${encodeURIComponent(fecha)}`;
     mailOptions = {
       from: 'auxilium.gestion777',
       to: `${correoAleatorio}`,
       subject: `Solicitud de servicio de plomería para el cliente ${username}`,
-      text: `
-      Estimado/a Agente,
-
-      Espero que se encuentre bien. Me pongo en contacto con usted en calidad de representante
-      de Auxilium.
-
-      El cliente ${username} ha reportado un problema con su sistema de plomería y ha 
-      solicitado su ayuda para solucionarlo. El cliente se encuentra en la siguiente dirección: ${direccion}
-      y la fecha de servicio deseada es el ${fecha}.
-
-      El problema que ha reportado el cliente es el siguiente:
-
+      html: `
+      <html>
+      <p>
+      Estimado/a Agente,<br/>
+      <br/>
+      Espero que se encuentre bien. Me pongo en contacto con usted en calidad de representante<br/>
+      de Auxilium.<br/>
+      <br/>
+      El cliente ${username} ha reportado un problema con su sistema de plomería y ha <br/>
+      solicitado su ayuda para solucionarlo. El cliente se encuentra en la siguiente dirección: ${direccion}<br/>
+      y la fecha de servicio deseada es el ${fecha}.<br/>
+      <br/>
+      El problema que ha reportado el cliente es el siguiente:<br/>
+      <br/>
       -${textdescrip}
+      <br/>
+      Numero de celular: ${phoneNumber}<br/>
+      <br/>
+      Agradecemos de antemano su colaboración.<br/>
+      <br/>
+      Saludos cordiales,<br/>
+      <br/>
+      Auxilium Gestion<br/>
+      </p>
+      <p style="text-align: center;">
+      <a href="mailto:${email}?subject=Solicitud%20aceptada&body=Su%20pedido%20ha%20sido%20confirmado" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 16px;">Aceptar</a>
+      </p>
+      <p style="text-align: center;">
+      <a href="${rechazarLink}" style="display: inline-block; background-color: #FF0000; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;  text-decoration: none; font-size: 16px;">Rechazar</a>
+      </p>
+      </html>
 
-      Numero de celular: ${phoneNumber}
 
-      Agradecemos de antemano su colaboración.
-
-      Saludos cordiales,
-
-      Auxilium Gestion`
+      `
     };
   } else if (botonSeleccionado === 'decorador') {
     const nombre = req.body.nombre;
     const direccion = req.body.direccion;
-    const estildeco = req.body.estildeco;
+    const textdescrip = req.body.estildeco;
     const phoneNumber = req.body.phoneNumber;
     const fecha = req.body.fecha;
+    const rechazarLink = `http://localhost:7777/rechazo?nombre=${encodeURIComponent(nombre)}&direccion=${encodeURIComponent(direccion)}&textdescrip=${encodeURIComponent(textdescrip)}&phoneNumber=${encodeURIComponent(phoneNumber)}&botonSeleccionado=${encodeURIComponent(botonSeleccionado)}&fecha=${encodeURIComponent(fecha)}`;
     mailOptions = {
       from: 'auxilium.gestion777',
-      to: `${email}`,
+      to: `${correoAleatorio}`,
       subject: `Solicitud de servicio de decoración para el cliente ${username}`,
       html: `
-    <html>
+      <html>
       <p>
-        Estimado/a Agente,<br/>
-        <br/>
-        Espero que se encuentre bien. Me pongo en contacto con usted en calidad de representante de Auxilium.<br/>
-        <br/>
-        El cliente ${username} ha solicitado sus servicios de decoración para su hogar, ubicado en la siguiente dirección: ${direccion}<br/>
-        y la fecha de servicio deseada es el ${fecha}.<br/>
-        <br/>
-        El cliente ha especificado lo siguiente:<br/>
-        <br/>
-        -${estildeco}<br/>
-        <br/>
-        Numero de celular: ${phoneNumber}<br/>
-        <br/>
-        Agradecemos de antemano su colaboración.<br/>
-        <br/>
-        Saludos cordiales,<br/>
-        <br/>
-        Auxilium Gestión<br/>
+      Estimado/a Agente,<br/>
+      <br/>
+      Espero que se encuentre bien. Me pongo en contacto con usted en calidad de representante de Auxilium.<br/>
+      <br/>
+      El cliente ${username} ha solicitado sus servicios de decoración para su hogar, ubicado en la siguiente dirección: ${direccion}<br/>
+      y la fecha de servicio deseada es el ${fecha}.<br/>
+      <br/>
+      El cliente ha especificado lo siguiente:<br/>
+      <br/>
+      -${textdescrip}<br/>
+      <br/>
+      Numero de celular: ${phoneNumber}<br/>
+      <br/>
+      Agradecemos de antemano su colaboración.<br/>
+      <br/>
+      Saludos cordiales,<br/>
+      <br/>
+      Auxilium Gestión<br/>
       </p>
       <p style="text-align: center;">
-      <a href="mailto:${email}?subject=Respuesta%20aceptada&body=Su%20pedido%20ha%20sido%20confirmado" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 16px;">Aceptar</a>
+      <a href="mailto:${email}?subject=Solicitud%20aceptada&body=Su%20pedido%20ha%20sido%20confirmado" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 16px;">Aceptar</a>
       </p>
       <p style="text-align: center;">
-      <a href="http://localhost:7777/rechazo?nombre=${encodeURIComponent(nombre)}&direccion=${encodeURIComponent(direccion)}&estildeco=${encodeURIComponent(estildeco)}&phoneNumber=${encodeURIComponent(phoneNumber)}&fecha=${encodeURIComponent(fecha)}" style="background-color: #FF0000; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;">Rechazar</a>
+      <a href="${rechazarLink}" style="display: inline-block; background-color: #FF0000; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;  text-decoration: none; font-size: 16px;">Rechazar</a>
       </p>
     </html>
-  `
+    `
     };
   }
   else if (botonSeleccionado === 'fumigador') {
@@ -282,27 +297,37 @@ app.post('/enviar-correo', (req, res) => {
     const numhabs = req.body.numhabs;
     const phoneNumber = req.body.phoneNumber;
     const fecha = req.body.fecha;
-
+    const rechazarLink = `http://localhost:7777/rechazo?nombre=${encodeURIComponent(nombre)}&direccion=${encodeURIComponent(direccion)}&numhabs=${encodeURIComponent(numhabs)}&phoneNumber=${encodeURIComponent(phoneNumber)}&botonSeleccionado=${encodeURIComponent(botonSeleccionado)}&fecha=${encodeURIComponent(fecha)}`;
     mailOptions = {
       from: 'auxilium.gestion777',
-      to: `${email}`,
+      to: `${correoAleatorio}`,
       subject: `Solicitud de servicio de control de plagas para el cliente ${username}`,
-      text: `
-      Estimado/a Agente,
-
-      Espero que se encuentre bien. Me pongo en contacto con usted en calidad de representante
-      de Auxilium.
-
-      El cliente ${nombre} ha solicitado un servicio de fumigación en la siguiente dirección: ${direccion}.
-      La solicitud incluye ${numhabs} habitaciones y la fecha de servicio deseada es el ${fecha}.
-
-      Numero de celular: ${phoneNumber}
-
-      Agradecemos de antemano su colaboración.
-
-      Saludos cordiales,
-
-      Auxilium Gestion`
+      html: `
+      <html>
+      <p>
+      Estimado/a Agente,<br/>
+      <br/>
+      Espero que se encuentre bien. Me pongo en contacto con usted en calidad de representante<br/>
+      de Auxilium.<br/>
+      <br/>
+      El cliente ${nombre} ha solicitado un servicio de fumigación en la siguiente dirección: ${direccion}.<br/>
+      La solicitud incluye ${numhabs} habitaciones y la fecha de servicio deseada es el ${fecha}.<br/>
+      <br/>
+      Numero de celular: ${phoneNumber}<br/>
+      <br/>
+      Agradecemos de antemano su colaboración.<br/>
+      <br/>
+      Saludos cordiales,<br/>
+      <br/>
+      Auxilium Gestion
+      </p>
+      <p style="text-align: center;">
+      <a href="mailto:${email}?subject=Solicitud%20aceptada&body=Su%20pedido%20ha%20sido%20confirmado" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 16px;">Aceptar</a>
+      </p>
+      <p style="text-align: center;">
+      <a href="${rechazarLink}" style="display: inline-block; background-color: #FF0000; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;  text-decoration: none; font-size: 16px;">Rechazar</a>
+      </html>
+      `
     };
 
   }
@@ -312,30 +337,42 @@ app.post('/enviar-correo', (req, res) => {
     const textdescrip = req.body.textdescrip;
     const phoneNumber = req.body.phoneNumber;
     const fecha = req.body.fecha;
+    const rechazarLink = `http://localhost:7777/rechazo?nombre=${encodeURIComponent(nombre)}&direccion=${encodeURIComponent(direccion)}&textdescrip=${encodeURIComponent(textdescrip)}&phoneNumber=${encodeURIComponent(phoneNumber)}&botonSeleccionado=${encodeURIComponent(botonSeleccionado)}&fecha=${encodeURIComponent(fecha)}`;
     mailOptions = {
       from: 'auxilium.gestion777',
-      to: `${email}`,
+      to: `${correoAleatorio}`,
       subject: `Solicitud de servicio de reparación para  ${username}`,
-      text: `
-      Estimado/a Agente,
-
-      Espero que se encuentre bien. Me pongo en contacto con usted en calidad de representante 
-      de Auxilium.
-
-      El cliente ${username} ha solicitado un servicio de reparacion y necesita de su ayuda para solucionarlo. 
-      El cliente se encuentra en la siguiente dirección: ${direccion} y la fecha de servicio deseada es el ${fecha}.
-
-      El problema que ha reportado el cliente es el siguiente:
-
-      -${textdescrip}
-
-      Numero de celular: ${phoneNumber}
-
-      Le agradecemos su pronta atención a este asunto.
-
-      Saludos cordiales,
-
-      Auxilium Gestion`
+      html: `
+      <html>
+      <p>
+      Estimado/a Agente,<br/>
+      <br/>
+      Espero que se encuentre bien. Me pongo en contacto con usted en calidad de representante<br/>
+      de Auxilium.<br/>
+      <br/>
+      El cliente ${username} ha solicitado un servicio de reparacion y necesita de su ayuda para solucionarlo.<br/>
+      El cliente se encuentra en la siguiente dirección: ${direccion} y la fecha de servicio deseada es el ${fecha}.<br/>
+      <br/>
+      El problema que ha reportado el cliente es el siguiente:<br/>
+      <br/>
+      -${textdescrip}<br/>
+      <br/>
+      Numero de celular: ${phoneNumber}<br/>
+      <br/>
+      Le agradecemos su pronta atención a este asunto.<br/>
+      <br/>
+      Saludos cordiales,<br/>
+      <br/>
+      Auxilium Gestion<br/>
+      </p>
+      <p style="text-align: center;">
+      <a href="mailto:${email}?subject=Solicitud%20aceptada&body=Su%20pedido%20ha%20sido%20confirmado" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 16px;">Aceptar</a>
+      </p>
+      <p style="text-align: center;">
+      <a href="${rechazarLink}" style="display: inline-block; background-color: #FF0000; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;  text-decoration: none; font-size: 16px;">Rechazar</a>
+      </p>
+      </html>
+      `
     };
   } else if (botonSeleccionado === 'carpintero') {
     const nombre = req.body.nombre;
@@ -343,92 +380,130 @@ app.post('/enviar-correo', (req, res) => {
     const textdescrip = req.body.textdescrip;
     const phoneNumber = req.body.phoneNumber;
     const fecha = req.body.fecha;
+    const rechazarLink = `http://localhost:7777/rechazo?nombre=${encodeURIComponent(nombre)}&direccion=${encodeURIComponent(direccion)}&textdescrip=${encodeURIComponent(textdescrip)}&phoneNumber=${encodeURIComponent(phoneNumber)}&botonSeleccionado=${encodeURIComponent(botonSeleccionado)}&fecha=${encodeURIComponent(fecha)}`;
     mailOptions = {
       from: 'auxilium.gestion777',
       to: `${email}`,
       subject: `Solicitud de servicio de carpinteríapara para el cliente ${username}`,
-      text: `
+      html: `
+      <html>
+      <p>
       Estimado/a Agente,
-
+      <br/>
       Espero que se encuentre bien. Me pongo en contacto con usted en calidad de representante 
       de Auxilium.
-
-      El cliente ${username} ha reportado un problema con un mueble en su hogar y ha solicitado 
-      su ayuda para repararlo. El cliente se encuentra en la siguiente dirección: ${direccion} y la fecha de servicio deseada es el ${fecha}.
-
+      <br/>
+      El cliente ${username} ha reportado un problema con un mueble en su hogar y ha solicitado<br/>
+      su ayuda para repararlo. El cliente se encuentra en la siguiente dirección: ${direccion} y la fecha de servicio deseada es el ${fecha}.<br/>
+      <br/>
       El problema que ha reportado el cliente es el siguiente:
-
-      -${textdescrip}
-
+      <br/>
+      -${textdescrip}<br/>
+      <br/>
       Numero de celular: ${phoneNumber}
-
+      <br/>
       Agradecemos de antemano su colaboración y profesionalismo.
-
+      <br/>
       Saludos cordiales,
-
-      Auxilium Gestion`
+      <br/>
+      Auxilium Gestion
+      </p>
+      <p style="text-align: center;">
+      <a href="mailto:${email}?subject=Solicitud%20aceptada&body=Su%20pedido%20ha%20sido%20confirmado" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 16px;">Aceptar</a>
+      </p>
+      <p style="text-align: center;">
+      <a href="${rechazarLink}" style="display: inline-block; background-color: #FF0000; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;  text-decoration: none; font-size: 16px;">Rechazar</a>
+      </p>
+      </html>
+      `
     };
   } else if (botonSeleccionado === 'electricista') {
     const nombre = req.body.nombre;
     const direccion = req.body.direccion;
-    const problemdescrip = req.body.problemdescrip;
+    const textdescrip = req.body.problemdescrip;
     const phoneNumber = req.body.phoneNumber;
     const fecha = req.body.fecha;
+    const rechazarLink = `http://localhost:7777/rechazo?nombre=${encodeURIComponent(nombre)}&direccion=${encodeURIComponent(direccion)}&textdescrip=${encodeURIComponent(textdescrip)}&phoneNumber=${encodeURIComponent(phoneNumber)}&botonSeleccionado=${encodeURIComponent(botonSeleccionado)}&fecha=${encodeURIComponent(fecha)}`;
     mailOptions = {
       from: 'auxilium.gestion777',
-      to: `${email}`,
+      to: `${correoAleatorio}`,
       subject: `Solicitud de servicio de electricidad para el cliente ${username}`,
-      text: `
-      Estimado/a Agente,
-
-      Espero que se encuentre bien. Me pongo en contacto con usted en calidad de representante 
-      de Auxilium.
-
-      El cliente ${username} ha reportado un problema con su sistema eléctrico y ha 
-      solicitado su ayuda para solucionarlo. El cliente se encuentra en la siguiente dirección: ${direccion} y la fecha de servicio deseada es el ${fecha}.
-
-      El problema que ha reportado el cliente es el siguiente:
-
-        -${problemdescrip}
-
-      Numero de celular: ${phoneNumber}
-
-      Agradecemos de antemano su colaboración.
-
-      Saludos cordiales,
-
-      Auxilium Gestion`
+      html: `
+      <html>
+      <p>
+      Estimado/a Agente,<br/>
+      <br/>
+      Espero que se encuentre bien. Me pongo en contacto con usted en calidad de representante<br/>
+      de Auxilium.<br/>
+      <br/>
+      El cliente ${username} ha reportado un problema con su sistema eléctrico y ha<br/>
+      solicitado su ayuda para solucionarlo. El cliente se encuentra en la siguiente dirección: ${direccion} y la fecha de servicio deseada es el ${fecha}.<br/>
+      <br/>
+      El problema que ha reportado el cliente es el siguiente:<br/>
+      <br/>
+        -${textdescrip}<br/>
+      <br/>
+      Numero de celular: ${phoneNumber}<br/>
+      <br/>
+      Agradecemos de antemano su colaboración.<br/>
+      <br/>
+      Saludos cordiales,<br/>
+      <br/>
+      Auxilium Gestion
+      </p>
+      <p style="text-align: center;">
+      <a href="mailto:${email}?subject=Solicitud%20aceptada&body=Su%20pedido%20ha%20sido%20confirmado" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 16px;">Aceptar</a>
+      </p>
+      <p style="text-align: center;">
+      <a href="${rechazarLink}" style="display: inline-block; background-color: #FF0000; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;  text-decoration: none; font-size: 16px;">Rechazar</a>
+      </p>
+      </html>
+      `
     };
   } else if (botonSeleccionado === 'pintor') {
     const nombre = req.body.nombre;
     const direccion = req.body.direccion;
-    const jobdescrip = req.body.jobdescrip;
+    const textdescrip = req.body.jobdescrip;
     const phoneNumber = req.body.phoneNumber;
     const fecha = req.body.fecha;
+    const rechazarLink = `http://localhost:7777/rechazo?nombre=${encodeURIComponent(nombre)}&direccion=${encodeURIComponent(direccion)}&textdescrip=${encodeURIComponent(textdescrip)}&phoneNumber=${encodeURIComponent(phoneNumber)}&botonSeleccionado=${encodeURIComponent(botonSeleccionado)}&fecha=${encodeURIComponent(fecha)}`;
     mailOptions = {
       from: 'auxilium.gestion777',
-      to: `${email}`,
+      to: `${correoAleatorio}`,
       subject: `Solicitud de servicio de pintura para el cliente ${username}`,
-      text: `
-      Estimado/a Agente,
+      html: `
 
-      Espero que se encuentre bien. Me pongo en contacto con usted en calidad de representante 
-      de Auxilium.
+      <html>
+      <p>
+      Estimado/a Agente,<br/>
+      <br/>
+      Espero que se encuentre bien. Me pongo en contacto con usted en calidad de representante<br/>
+      de Auxilium.<br/>
+      <br/>
+      El cliente ${username} ha solicitado los servicios de un pintor para realizar trabajos en su <br/>
+      domicilio. La dirección del cliente es la siguiente: ${direccion} y la fecha de servicio deseada es el ${fecha}.<br/>
+      <br/>
+      El cliente necesita los siguientes trabajos de pintura:<br/>
+      <br/>
+        - ${textdescrip}<br/>
+      <br/>
+      Numero de celular: ${phoneNumber}<br/>
+      <br/>
+      Agradecemos de antemano su colaboración.<br/>
+      <br/>
+      Saludos cordiales,<br/>
+      <br/>
+      Auxilium Gestion
+      </p>
+      <p style="text-align: center;">
+      <a href="mailto:${email}?subject=Solicitud%20aceptada&body=Su%20pedido%20ha%20sido%20confirmado" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 16px;">Aceptar</a>
+      </p>
+      <p style="text-align: center;">
+      <a href="${rechazarLink}" style="display: inline-block; background-color: #FF0000; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;  text-decoration: none; font-size: 16px;">Rechazar</a>
+      </p>
+      </html>
 
-      El cliente ${username} ha solicitado los servicios de un pintor para realizar trabajos en su 
-      domicilio. La dirección del cliente es la siguiente: ${direccion} y la fecha de servicio deseada es el ${fecha}.
-
-      El cliente necesita los siguientes trabajos de pintura:
-
-        - ${jobdescrip}
-
-      Numero de celular: ${phoneNumber}
-
-      Agradecemos de antemano su colaboración.
-      
-      Saludos cordiales,
-
-      Auxilium Gestion`
+      `
     };
   } else if (botonSeleccionado === 'limpieza') {
     const nombre = req.body.nombre;
@@ -436,59 +511,83 @@ app.post('/enviar-correo', (req, res) => {
     const numhabs = req.body.numhabs;
     const phoneNumber = req.body.phoneNumber;
     const fecha = req.body.fecha;
+    const rechazarLink = `http://localhost:7777/rechazo?nombre=${encodeURIComponent(nombre)}&direccion=${encodeURIComponent(direccion)}&numhabs=${encodeURIComponent(numhabs)}&phoneNumber=${encodeURIComponent(phoneNumber)}&botonSeleccionado=${encodeURIComponent(botonSeleccionado)}&fecha=${encodeURIComponent(fecha)}`;
     mailOptions = {
       from: 'auxilium.gestion777',
-      to: `${email}`,
+      to: `${correoAleatorio}`,
       subject: `Solicitud de servicio de limpieza para el cliente ${username}`,
-      text: `
-      Estimado/a Agente,
-
-      Espero que se encuentre bien. Me pongo en contacto con usted en calidad de representante 
-      de Auxilium.
-
-      El cliente ${username} ha solicitado un servicio de limpieza en su hogar ubicado en la 
-      siguiente dirección: ${direccion}.
-      La solicitud incluye ${numhabs} habitaciones y la fecha de servicio deseada es el ${fecha}.
-
-      Numero de celular: ${phoneNumber}
-
-      Agradecemos de antemano su colaboración.
-      
-      Saludos cordiales,
-
-      Auxilium Gestion`
+      html: `
+      <html>
+      <p>
+      Estimado/a Agente,<br/>
+      <br/>
+      Espero que se encuentre bien. Me pongo en contacto con usted en calidad de representante <br/>
+      de Auxilium.<br/>
+      <br/>
+      El cliente ${username} ha solicitado un servicio de limpieza en su hogar ubicado en la <br/>
+      siguiente dirección: ${direccion}.<br/>
+      La solicitud incluye ${numhabs} habitaciones y la fecha de servicio deseada es el ${fecha}.<br/>
+      <br/>
+      Numero de celular: ${phoneNumber}<br/>
+      <br/>
+      Agradecemos de antemano su colaboración.<br/>
+      <br/>
+      Saludos cordiales,<br/>
+      <br/>
+      Auxilium Gestion
+      </p>
+      <p style="text-align: center;">
+      <a href="mailto:${email}?subject=Solicitud%20aceptada&body=Su%20pedido%20ha%20sido%20confirmado" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 16px;">Aceptar</a>
+      </p>
+      <p style="text-align: center;">
+      <a href="${rechazarLink}" style="display: inline-block; background-color: #FF0000; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;  text-decoration: none; font-size: 16px;">Rechazar</a>
+      </p>
+      </html>
+      `
     };
   } else if (botonSeleccionado === 'albañil') {
     const nombre = req.body.nombre;
     const direccion = req.body.direccion;
-    const jobdescrip = req.body.jobdescrip;
+    const textdescrip = req.body.jobdescrip;
     const phoneNumber = req.body.phoneNumber;
     const fecha = req.body.fecha;
+    const rechazarLink = `http://localhost:7777/rechazo?nombre=${encodeURIComponent(nombre)}&direccion=${encodeURIComponent(direccion)}&textdescrip=${encodeURIComponent(textdescrip)}&phoneNumber=${encodeURIComponent(phoneNumber)}&botonSeleccionado=${encodeURIComponent(botonSeleccionado)}&fecha=${encodeURIComponent(fecha)}`;
     mailOptions = {
       from: 'auxilium.gestion777',
-      to: `${email}`,
+      to: `${correoAleatorio}`,
       subject: ` Solicitud de servicios de albañilería para el cliente ${username}`,
-      text: `
-      Estimado/a Agente,
+      html: `
+      <html>
+      <p>
+      Estimado/a Agente,<br/>
+      <br/>
+      Espero que se encuentre bien. Me pongo en contacto con usted en calidad de representante <br/>
+      de Auxilium.<br/>
 
-      Espero que se encuentre bien. Me pongo en contacto con usted en calidad de representante 
-      de Auxilium.
-
-      El cliente ${username} ha reportado un problema con una pared en su hogar y ha solicitado 
-      su ayuda para solucionarlo. El cliente se encuentra en la siguiente dirección: ${direccion} 
-      y la fecha de servicio deseada es el ${fecha}.
-
-      El problema que ha reportado el cliente es el siguiente: 
-      
-      - ${jobdescrip}
-      
-      Numero de celular: ${phoneNumber}
-
-      Agradecemos de antemano su colaboración.
-      
-      Saludos cordiales,
-
-      Auxilium Gestion`
+      El cliente ${username} ha reportado un problema con una pared en su hogar y ha solicitado <br/>
+      su ayuda para solucionarlo. El cliente se encuentra en la siguiente dirección: ${direccion} <br/>
+      y la fecha de servicio deseada es el ${fecha}.<br/>
+      <br/>
+      El problema que ha reportado el cliente es el siguiente: <br/>
+      <br/>
+      - ${textdescrip}<br/>
+      <br/>
+      Numero de celular: ${phoneNumber}<br/>
+      <br/>
+      Agradecemos de antemano su colaboración.<br/>
+      <br/>
+      Saludos cordiales,<br/>
+      <br/>
+      Auxilium Gestion
+      </p>
+      <p style="text-align: center;">
+      <a href="mailto:${email}?subject=Solicitud%20aceptada&body=Su%20pedido%20ha%20sido%20confirmado" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 16px;">Aceptar</a>
+      </p>
+      <p style="text-align: center;">
+      <a href="${rechazarLink}" style="display: inline-block; background-color: #FF0000; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;  text-decoration: none; font-size: 16px;">Rechazar</a>
+      </p>
+      </html>
+      `
     };
   }
 
