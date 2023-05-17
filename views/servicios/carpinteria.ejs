@@ -197,11 +197,11 @@
               </div>
               <div class="col-sm-5">
                 <label for="">Télefono</label>
-                <input type="number" class="form-control" name="phoneNumber">
+                <input type="number" class="form-control" name="phoneNumber" id="phoneNumber">
               </div>
               <div class="col-sm-5">
                 <label for="">Fecha</label>
-                <input type="date" class="form-control" name="fecha">
+                <input type="date" class="form-control" name="fecha" id="fecha">
               </div>
             </div>
             <br>
@@ -239,32 +239,41 @@
       const textdescrip = document.getElementById('textdescrip').value;
       const phoneNumber = document.getElementById('phoneNumber').value;
       const fecha = document.getElementById('fecha').value;
-      Swal.fire({
-        title: '¿Estas seguro?',
-        text: "",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, hacer pedido'
-      })
-        .then((result) => {
-          if (result.isConfirmed) {
-            fetch('/enviar-correo', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({ button: botonSeleccionado, nombre: nombre, direccion: direccion, textdescrip: textdescrip, phoneNumber: phoneNumber, fecha: fecha })
-            })
-
-            Swal.fire(
-              'Pedido realizado',
-              '',
-              'success'
-            )
-          }
+      var fechaHoy = new Date().toISOString().split('T')[0];
+      if (nombre === "" || direccion === "" || textdescrip === "" || phoneNumber === "" || fecha === "" || fecha < fechaHoy) {
+        Swal.fire(
+                'Ingresa datos validos',
+                '',
+                'error'
+              )
+      } else {
+        Swal.fire({
+          title: '¿Estas seguro?',
+          text: "",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Si, hacer pedido'
         })
+          .then((result) => {
+            if (result.isConfirmed) {
+              fetch('/enviar-correo', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ button: botonSeleccionado, nombre: nombre, direccion: direccion, textdescrip: textdescrip, phoneNumber: phoneNumber, fecha: fecha })
+              })
+
+              Swal.fire(
+                'Pedido realizado',
+                '',
+                'success'
+              )
+            }
+          })
+      }
     }
   </script>
 </body>

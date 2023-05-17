@@ -78,16 +78,17 @@
   button:hover svg {
     transform: rotate(45deg);
   }
+
   * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
   }
-  
+
   body {
     font-family: 'calibri';
   }
-  
+
   header {
     background: #1163ff;
     width: 100%;
@@ -95,14 +96,15 @@
     content: '';
     display: table;
   }
-  
+
   .menu {
     width: 900px;
     margin: 0 auto;
     display: flex;
-    align-items: center; /* Centramos verticalmente los elementos */
+    align-items: center;
+    /* Centramos verticalmente los elementos */
   }
-  
+
   #auxilium {
     width: 100px;
     height: auto;
@@ -110,32 +112,32 @@
     transform: scale(3.6);
     pointer-events: none;
   }
-  
+
   nav {
     flex-grow: 1;
   }
-  
+
   nav ul {
-    display: flex; 
-    justify-content: flex-end; 
+    display: flex;
+    justify-content: flex-end;
     list-style: none;
   }
-  
+
   nav ul li {
-    margin-left: 20px; 
+    margin-left: 20px;
   }
-  
+
   nav ul li a {
     text-decoration: none;
     color: white;
     font-weight: bold;
     text-transform: uppercase;
   }
-  
+
   nav ul li a:hover {
     color: #5ce1e6;
   }
-  
+
   nav ul li a::before {
     display: block;
     content: '';
@@ -145,7 +147,7 @@
     top: 0;
     transition: width 0.2s;
   }
-  
+
   nav ul li a:hover::before {
     width: 100%;
   }
@@ -193,7 +195,7 @@
             <div class="row mt-3">
               <div class="col-sm-5">
                 <label for="">Descripción del trabajo</label>
-                <textarea class="form-control" name="jobdescrip" id="jobdescrip">  </textarea>
+                <textarea class="form-control" name="jobdescrip" id="jobdescrip"></textarea>
               </div>
               <div class="col-sm-5">
                 <label for="">Télefono</label>
@@ -239,33 +241,42 @@
       const jobdescrip = document.getElementById('jobdescrip').value;
       const phoneNumber = document.getElementById('phoneNumber').value;
       const fecha = document.getElementById('fecha').value;
-      Swal.fire({
-        title: '¿Estas seguro?',
-        text: "",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, hacer pedido'
-      })
-        .then((result) => {
-          if (result.isConfirmed) {
-            fetch('/enviar-correo', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({ button: botonSeleccionado, nombre: nombre, direccion: direccion, jobdescrip: jobdescrip, phoneNumber: phoneNumber, fecha: fecha })
-            })
-
-            Swal.fire(
-              'Pedido realizado',
-              '',
-              'success'
-            )
-          }
+      var fechaHoy = new Date().toISOString().split('T')[0];
+      if (nombre === "" || direccion === "" || jobdescrip === "" || phoneNumber === "" || fecha === "" || fecha < fechaHoy) {
+        Swal.fire(
+                'Ingresa datos validos',
+                '',
+                'error'
+              )
+      } else {
+        Swal.fire({
+          title: '¿Estas seguro?',
+          text: "",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Si, hacer pedido'
         })
-    }
+          .then((result) => {
+            if (result.isConfirmed) {
+              fetch('/enviar-correo', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ button: botonSeleccionado, nombre: nombre, direccion: direccion, jobdescrip: jobdescrip, phoneNumber: phoneNumber, fecha: fecha })
+              })
+
+              Swal.fire(
+                'Pedido realizado',
+                '',
+                'success'
+              )
+            }
+          })
+      }
+    } 
   </script>
 </body>
 

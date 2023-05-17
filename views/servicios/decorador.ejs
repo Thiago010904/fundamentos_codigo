@@ -240,33 +240,43 @@
       const estildeco = document.getElementById('estildeco').value;
       const phoneNumber = document.getElementById('phoneNumber').value;
       const fecha = document.getElementById('fecha').value;
-      Swal.fire({
-        title: '¿Estas seguro?',
-        text: "",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, hacer pedido'
-      })
-        .then((result) => {
-          if (result.isConfirmed) {
-            fetch('/enviar-correo', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({ button: botonSeleccionado, nombre: nombre, direccion: direccion, estildeco: estildeco, phoneNumber: phoneNumber, fecha: fecha })
-            })
-
-            Swal.fire(
-              'Pedido realizado',
-              '',
-              'success'
-            )
-          }
+      var fechaHoy = new Date().toISOString().split('T')[0];
+      if (nombre === "" || direccion === "" || estildeco === "" || phoneNumber === "" || fecha === "" || fecha < fechaHoy) {
+        Swal.fire(
+                'Ingresa datos validos',
+                '',
+                'error'
+              )
+      } else {
+        Swal.fire({
+          title: '¿Estas seguro?',
+          text: "",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Si, hacer pedido'
         })
+          .then((result) => {
+            if (result.isConfirmed) {
+              fetch('/enviar-correo', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ button: botonSeleccionado, nombre: nombre, direccion: direccion, estildeco: estildeco, phoneNumber: phoneNumber, fecha: fecha })
+              })
+
+              Swal.fire(
+                'Pedido realizado',
+                '',
+                'success'
+              )
+            }
+          })
+      }
     }
+
   </script>
 </body>
 

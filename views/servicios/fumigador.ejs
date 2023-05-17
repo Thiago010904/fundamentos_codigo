@@ -165,7 +165,7 @@
     </div>
   </header>
 
-  
+
   <h1 class="text-center">
     Servicios de Fumigación
   </h1>
@@ -238,8 +238,8 @@
       const numhabs = document.getElementById('numhabs').value;
       const phoneNumber = document.getElementById('phoneNumber').value;
       const fecha = document.getElementById('fecha').value;
-      console.log(nombre)
-      if (nombre === "" || direccion === "" || numhabs < 0 || phoneNumber === "" || fecha === "") {
+      var fechaHoy = new Date().toISOString().split('T')[0];
+      if (nombre === "" || direccion === "" || numhabs < 0  || phoneNumber === "" || fecha === "" || fecha < fechaHoy || numhabs === "") {
         Swal.fire(
                 'Ingresa datos validos',
                 '',
