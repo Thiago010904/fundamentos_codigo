@@ -233,7 +233,7 @@
       const botonSeleccionado = funcion;
       const nombre = document.getElementById('nombre').value;
       const direccion = document.getElementById('direccion').value;
-      const problemdescrip = document.getElementById('problemdescrip').value;
+      const numhabs = document.getElementById('numhabs').value;
       const phoneNumber = document.getElementById('phoneNumber').value;
       const fecha = document.getElementById('fecha').value;
       Swal.fire({
@@ -252,7 +252,7 @@
               headers: {
                 'Content-Type': 'application/json'
               },
-              body: JSON.stringify({ button: botonSeleccionado, nombre: nombre, direccion: direccion, problemdescrip: problemdescrip, phoneNumber: phoneNumber, fecha: fecha })
+              body: JSON.stringify({ button: botonSeleccionado, nombre: nombre, direccion: direccion, numhabs: numhabs, phoneNumber: phoneNumber, fecha: fecha })
             })
 
             Swal.fire(
