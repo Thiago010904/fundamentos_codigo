@@ -31,6 +31,10 @@ app.get('/error', (req, res) => {
   res.render('error');
 });
 
+app.get('/rechazo', (req, res) => {
+  res.render('rechazo');
+});
+
 // SERVICIOS //
 app.get('/plomero', (req, res) => {
   if (!req.session.login) { res.redirect('/login'); return; }
@@ -188,6 +192,14 @@ app.post('/enviar-correo', (req, res) => {
   const username = req.session.userData.username;
   const email = req.session.userData.email;
 
+  function correoAleatorio(){
+    var listaCorreos = ['alejandromarin203@gmail.com', 'santiagoxox09@gmail.com']
+    const indiceAleatorio = Math.floor(Math.random() * listaCorreos.length);
+    return listaCorreos[indiceAleatorio]
+  }
+
+  
+
   // Configurar el correo electrónico en función del botón seleccionado
   let mailOptions;
   if (botonSeleccionado === 'plomero') {
@@ -198,7 +210,7 @@ app.post('/enviar-correo', (req, res) => {
     const fecha = req.body.fecha;
     mailOptions = {
       from: 'auxilium.gestion777',
-      to: `${email}`,
+      to: `${correoAleatorio}`,
       subject: `Solicitud de servicio de plomería para el cliente ${username}`,
       text: `
       Estimado/a Agente,
@@ -232,47 +244,36 @@ app.post('/enviar-correo', (req, res) => {
       from: 'auxilium.gestion777',
       to: `${email}`,
       subject: `Solicitud de servicio de decoración para el cliente ${username}`,
-      html:`
-      <html>
-      <head>
-          <style>
-            /* Estilos para el contenido del correo */
-            body {
-              font-family: Arial, sans-serif; /* Cambia la fuente del texto */
-              font-size: 50px; /* Cambia el tamaño de la fuente */
-              color: #333333; /* Cambia el color del texto */
-            }
-          </style>
-        </head>
-        <body>
-          <!-- Contenido del correo -->
-          <p>
-              Estimado/a Agente,<br/>
-              <br/>
-              Espero que se encuentre bien. Me pongo en contacto con usted en calidad de representante de Auxilium.<br/>
-              <br/>
-              El cliente ${username} ha solicitado sus servicios de decoración para su hogar, ubicado en la siguiente dirección: ${direccion}<br/>
-              y la fecha de servicio deseada es el ${fecha}.<br/>
-              <br/>
-              El cliente ha especificado lo siguiente:<br/>
-              <br/>
-              -${estildeco}<br/>
-              <br/>
-              Numero de celular: ${phoneNumber}<br/>
-              <br/>
-              Agradecemos de antemano su colaboración.<br/>
-              <br/>
-              Saludos cordiales,<br/>
-              <br/>
-              Auxilium Gestión<br/>
-          </p>
-          <button type="button" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">
-              Aceptar
-            </button>
-            <a href="https://www.example.com" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; text-align: center; width: auto;">Botón</a>
-        </body>
-      
-      </html>`
+      html: `
+    <html>
+      <p>
+        Estimado/a Agente,<br/>
+        <br/>
+        Espero que se encuentre bien. Me pongo en contacto con usted en calidad de representante de Auxilium.<br/>
+        <br/>
+        El cliente ${username} ha solicitado sus servicios de decoración para su hogar, ubicado en la siguiente dirección: ${direccion}<br/>
+        y la fecha de servicio deseada es el ${fecha}.<br/>
+        <br/>
+        El cliente ha especificado lo siguiente:<br/>
+        <br/>
+        -${estildeco}<br/>
+        <br/>
+        Numero de celular: ${phoneNumber}<br/>
+        <br/>
+        Agradecemos de antemano su colaboración.<br/>
+        <br/>
+        Saludos cordiales,<br/>
+        <br/>
+        Auxilium Gestión<br/>
+      </p>
+      <p style="text-align: center;">
+      <a href="mailto:${email}?subject=Respuesta%20aceptada&body=Su%20pedido%20ha%20sido%20confirmado" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 16px;">Aceptar</a>
+      </p>
+      <p style="text-align: center;">
+      <a href="http://localhost:7777/rechazo?nombre=${encodeURIComponent(nombre)}&direccion=${encodeURIComponent(direccion)}&estildeco=${encodeURIComponent(estildeco)}&phoneNumber=${encodeURIComponent(phoneNumber)}&fecha=${encodeURIComponent(fecha)}" style="background-color: #FF0000; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;">Rechazar</a>
+      </p>
+    </html>
+  `
     };
   }
   else if (botonSeleccionado === 'fumigador') {
