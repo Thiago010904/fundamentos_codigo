@@ -48,11 +48,10 @@
                       </div>
 
                       <div class="form-outline mb-4">
-                        <input type="number" id="documentNumber" class="form-control form-control-lg" name="docNumber"
-                          required minlength="8" maxlength="10" />
+                        <input type="text" pattern="[0-9]+" id="documentNumber" class="form-control form-control-lg"
+                        name="docNumber" minlength="8" maxlength="10"  required />
                         <label class="form-label" for="documentNumber">Número de documento</label>
                       </div>
-
                       <div class="form-outline mb-4">
                         <input type="email" id="email" class="form-control form-control-lg" name="email" required />
                         <label class="form-label" for="email">Correo electrónico</label>
