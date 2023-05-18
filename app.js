@@ -589,7 +589,41 @@ app.post('/enviar-correo', (req, res) => {
       </html>
       `
     };
-  }
+  }else if(botonSeleccionado === 'ambulancia'){
+    const direccion = req.body.direccion;
+    const phoneNumber = req.body.phoneNumber;
+    mailOptions = {
+      from: 'auxilium.gestion777',
+      to: `${correoAleatorio}`,
+      subject: `Solicitud de servicios de ambulancia para el cliente ${username}`,
+      html: `
+      <html>
+      <p>
+      Estimado/a Agente,<br/>
+      <br/>
+      Espero que se encuentre bien. Me pongo en contacto con usted en calidad de representante <br/>
+      de Auxilium.<br/>
+      <br/>
+      El cliente ${username} ha reportado un problema y requiere de una ambulancia urgentemente.<br/>
+      <br/>
+      El cliente se encuentra en la siguiente dirección: ${direccion}.<br/>
+      <br/>
+      Numero de celular: ${phoneNumber}<br/>
+      Contactar con el usuario lo mas pronto posible<br/>
+      <br/>
+      Agradecemos de antemano su colaboración.<br/>
+      <br/>
+      Saludos cordiales,<br/>
+      <br/>
+      Auxilium Gestion
+      </p>
+      <p style="text-align: center;">
+      <a href="mailto:${email}?subject=Solicitud%20aceptada&body=Su%20pedido%20ha%20sido%20confirmado" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 16px;">Aceptar</a>
+      </p>
+      </html>
+      `
+    };
+  };
 
   // Enviar el correo electrónico
   transporter.sendMail(mailOptions, function (error, info) {

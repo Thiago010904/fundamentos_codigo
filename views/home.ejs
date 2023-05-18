@@ -10,20 +10,68 @@
 </head>
 <style>
   .card {
-    margin-left: 250px;
-    margin-top: 50px;
-    width: 1000px;
-    height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40vh;
     border-radius: 5px;
     border-width: 5px;
     background: white;
     border-color: #2196F3;
+    background-color: transparent;
+    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.5);
+
   }
-  * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+
+  .card-body {
+    max-width: 600px;
   }
+
+  .img-fluid {
+    max-width: 100%;
+    height: auto;
+    border-radius: 1rem;
+    margin-left: 5%;
+  }
+
+  .form-control {
+    width: 100%;
+  }
+
+  .hero {
+    position: relative;
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding-bottom: 100px;
+  }
+
+  .hero h1 {
+    position: relative;
+    z-index: 1;
+    opacity: 2;
+  }
+
+  .hero:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://fondosmil.com/fondo/2258.jpg') center/cover;
+    opacity: 0.7;
+  }
+
+  .company-info {
+    padding: 20px;
+    text-align: center;
+  }
+
   button {
     font-family: inherit;
     font-size: 18px;
@@ -38,6 +86,7 @@
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
     transition: all 0.3s;
   }
+
   button:hover {
     transform: translateY(-3px);
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
@@ -80,6 +129,7 @@
   button:hover svg {
     transform: rotate(45deg);
   }
+
   * {
     padding: 0;
     margin: 0;
@@ -87,9 +137,11 @@
   }
 
   body {
+    margin: 0;
+    padding: 0;
     font-family: 'calibri';
   }
-  
+
   header {
     background: #1163ff;
     width: 100%;
@@ -97,14 +149,15 @@
     content: '';
     display: table;
   }
-  
+
   .menu {
     width: 900px;
     margin: 0 auto;
     display: flex;
-    align-items: center; /* Centramos verticalmente los elementos */
+    align-items: center;
+    /* Centramos verticalmente los elementos */
   }
-  
+
   #auxilium {
     width: 100px;
     height: auto;
@@ -112,32 +165,32 @@
     transform: scale(2.1);
     pointer-events: none;
   }
-  
+
   nav {
     flex-grow: 1;
   }
-  
+
   nav ul {
-    display: flex; 
-    justify-content: flex-end; 
+    display: flex;
+    justify-content: flex-end;
     list-style: none;
   }
-  
+
   nav ul li {
-    margin-left: 20px; 
+    margin-left: 20px;
   }
-  
+
   nav ul li a {
     text-decoration: none;
     color: white;
     font-weight: bold;
     text-transform: uppercase;
   }
-  
+
   nav ul li a:hover {
     color: #5ce1e6;
   }
-  
+
   nav ul li a::before {
     display: block;
     content: '';
@@ -147,11 +200,10 @@
     top: 0;
     transition: width 0.2s;
   }
-  
+
   nav ul li a:hover::before {
     width: 100%;
   }
-  
 </style>
 
 <body>
@@ -167,62 +219,117 @@
       </nav>
     </div>
   </header>
-
-  <h1 class="text-center">
-    Servicio ambulancia de emergencia
-  </h1>
-  <div class="card">
-    <div class="row">
-      <div class="col-md-4 text-center">
-        <br>
-        <img src="https://media.istockphoto.com/id/665771398/es/foto/un-mont%C3%B3n-de-veh%C3%ADculo-van-de-la-ambulancia-del-servicio-de-ambulancias-de-londres-estacionado.jpg?s=612x612&w=0&k=20&c=VQCsTnBbk3KQtdAH1sg768cALzQaim9GhIbx5QUBvjo="
-          alt="login form" class="img-fluid" style="border-radius: 1rem; height: 200px; margin-top: 50px;" />
-      </div>
-      <div class="col-md-8">
-        <div class="card-body ">
-          <form action="/enviar-correo" method="POST">
-            <h3>Formulario de Servicio</h3>
+  <div class="hero">
+    <h1>SERVICIO DE AMBULANCIA A LA MANO</h1>
+    <div class="request-form">
+      <div class="card">
+        <div class="row">
+          <div class="col-md-4 text-center">
             <br>
-            <br>
-            <div class="row">
-              <div class="col-sm-5">
-                <label for="">Nombre</label>
-                <input type="text" class="form-control" name="nombre" id="nombre">
-              </div>
-              <div class="col-sm-5">
-                <label for="">Dirección</label>
-                <input type="text" class="form-control" name="direccion" id="direccion">
-              </div>
-            </div>
-            <br>
-            <br>
-            <div class="">
-              <button type="button" onclick="alerta('electricista')">
-                <div class="svg-wrapper-1">
-                  <div class="svg-wrapper">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                      <path fill="none" d="M0 0h24v24H0z"></path>
-                      <path fill="currentColor"
-                        d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z">
-                      </path>
-                    </svg>
+            <img
+              src="https://media.istockphoto.com/id/665771398/es/foto/un-mont%C3%B3n-de-veh%C3%ADculo-van-de-la-ambulancia-del-servicio-de-ambulancias-de-londres-estacionado.jpg?s=612x612&w=0&k=20&c=VQCsTnBbk3KQtdAH1sg768cALzQaim9GhIbx5QUBvjo="
+              alt="login form" class="img-fluid" style="margin-top: 50px;" />
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <form action="/enviar-correo" method="POST">
+                <h3 class="text-center">Formulario de Servicio</h3>
+                <br>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <label for="nombre">Télefono</label>
+                    <input type="number" class="form-control" name="nombre" id="phoneNumber">
+                  </div>
+                  <div class="col-sm-6">
+                    <label for="direccion">Dirección</label>
+                    <input type="text" class="form-control" name="direccion" id="direccion">
                   </div>
                 </div>
-                <span>Enviar solicitud</span>
-              </button>
+                <br>
+                <div class="text-center">
+                  <button type="button" onclick="alerta('ambulancia')">
+                    <div class="svg-wrapper">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                        <path fill="none" d="M0 0h24v24H0z"></path>
+                        <path fill="currentColor"
+                          d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z">
+                        </path>
+                      </svg>
+                    </div>
+                    <span>Enviar solicitud</span>
+                  </button>
+                </div>
+              </form>
             </div>
-          </form>
+          </div>
+
         </div>
+
       </div>
+
     </div>
   </div>
-
-
+  <div class="company-info">
+    <p>
+      Nuestro objetivo es facilitar y agilizar el trámite de solicitud de servicios en línea, sin importar su tipo. <br>
+      Con nuestra plataforma, podrás realizar tus solicitudes de manera rápida y eficiente, ahorrando tiempo y costos<br>
+      operativos. Ya no dependerás de la disponibilidad de un operador, ya que podrás acceder a nuestros servicios en <br>
+      cualquier momento.<br>
+      <br>
+      En Auxilium nos preocupamos por brindarte una experiencia completa e intuitiva. Hemos diseñado una interfaz<br>
+      amigable, con una navegación sencilla y funcionalidades accesibles en pocos clics. Además, nos hemos asegurado de<br>
+      utilizar fuentes legibles, tamaños responsables y colores visibles para garantizar una experiencia agradable para<br>
+      todo tipo de usuarios.
+    </p>
+  </div>
 
   <!-- Importa los scripts de Bootstrap -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+  <script>
+    function alerta(funcion) {
+      const botonSeleccionado = funcion;
+      const direccion = document.getElementById('direccion').value;
+      const phoneNumber = document.getElementById('phoneNumber').value;
+      var fechaHoy = new Date().toISOString().split('T')[0];
+      if (direccion === "" || phoneNumber === "") {
+        Swal.fire(
+                'Ingresa datos validos',
+                '',
+                'error'
+              )
+      } else {
+        Swal.fire({
+          title: '¿Estas seguro?',
+          text: "",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Si, hacer pedido'
+        })
+          .then((result) => {
+            if (result.isConfirmed) {
+              fetch('/enviar-correo', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ button: botonSeleccionado, direccion: direccion, phoneNumber: phoneNumber})
+              })
+
+              Swal.fire(
+                'Pedido realizado',
+                '',
+                'success'
+              )
+            }
+          })
+      }
+    }
+  </script>
 </body>
 
 </html>
