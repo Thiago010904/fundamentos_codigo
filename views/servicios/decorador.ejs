@@ -207,6 +207,10 @@
                 <label for="">Fecha</label>
                 <input type="date" class="form-control" name="fecha" id="fecha">
               </div>
+              <div class="col-sm-5">
+                <label for="">Fecha</label>
+                <input type="time" class="form-control" name="fecha" id="fecha">
+              </div>
             </div>
             <br>
             <br>
@@ -243,6 +247,7 @@
       const estildeco = document.getElementById('estildeco').value;
       const phoneNumber = document.getElementById('phoneNumber').value;
       const fecha = document.getElementById('fecha').value;
+      
       var fechaHoy = new Date().toISOString().split('T')[0];
       if (nombre === "" || direccion === "" || estildeco === "" || phoneNumber === "" || fecha === "" || fecha < fechaHoy) {
         Swal.fire(
