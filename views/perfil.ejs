@@ -10,19 +10,109 @@
 </head>
 <style>
   .card {
-    margin-left: 250px;
-    margin-top: 50px;
-    width: 1000px;
-    height: 335px;
-    border-radius: 5px;
-    border-width: 5px;
-    background: white;
-    border-color: #2196F3;
+  margin-left: 600px;
+  margin-top: 50px;
+  position: relative;
+  width: 300px;
+  height: 320px;
+  background: #ffffff;
+  border-radius: 14px;
+}
 
+.bg {
+  position: absolute;
+  z-index: -1;
+  inset: -4px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.uwu {
+  filter: blur(8px);
+  transition: filter 0.3s;
+}
+
+.bg::before {
+  content: '';
+  position: absolute;
+  aspect-ratio: 1/1;
+  top: 50%;
+  left: 50%;
+  min-width: 150%;
+  min-height: 150%;
+  background-image: conic-gradient(
+    hsl(0, 100%, 50%),
+    hsl(30, 100%, 50%),
+    hsl(60, 100%, 50%),
+    hsl(90, 100%, 50%),
+    hsl(120, 100%, 50%),
+    hsl(150, 100%, 50%),
+    hsl(180, 100%, 50%),
+    hsl(210, 100%, 50%),
+    hsl(240, 100%, 60%),
+    hsl(270, 100%, 50%),
+    hsl(300, 100%, 50%),
+    hsl(330, 100%, 50%),
+    hsl(360, 100%, 50%)
+  );
+  animation: speeen 4s linear infinite;
+  transform-origin: 0% 0%;
+  transform: rotate(0deg) translate(-50%, -50%);
+}
+
+@keyframes speeen {
+  from {
+    transform: rotate(0deg) translate(-50%, -50%);
   }
+
+  to {
+    transform: rotate(360deg) translate(-50%, -50%);
+  }
+}
+
+.content {
+  position: relative;
+  padding: 14px 16px;
+}
+
+.img {
+  height: 5em;
+  width: 5em;
+  margin: auto;
+  background-color: rgba(61, 61, 61, 0.2);
+  border-radius: 1em;
+}
+
+.img svg {
+  height: 100%;
+  fill: rgb(0, 0, 0);
+}
+
+.content div {
+  text-align: center;
+}
+
+.h1 {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.p {
+  font-size: 0.75em;
+}
+
+.p p {
+  margin-top: 0.5em;
+  padding: 0.5em;
+  background-color: #0003;
+  border-radius: 1em;
+}
 
   .button {
     --width: 100px;
+    margin-left: 80px;
     --height: 35px;
     --tooltip-height: 35px;
     --tooltip-width: 90px;
@@ -97,7 +187,7 @@
   }
 
   .icon {
-    color: #fff;
+    color: #ff0707;
     top: 100%;
     display: flex;
     align-items: center;
@@ -152,7 +242,7 @@
   }
   
   header {
-    background: #1163ff;
+    background: #ffffff;
     width: 100%;
     clear: both;
     content: '';
@@ -190,7 +280,7 @@
   
   nav ul li a {
     text-decoration: none;
-    color: white;
+    color: black;
     font-weight: bold;
     text-transform: uppercase;
   }
@@ -227,54 +317,45 @@
       </nav>
     </div>
   </header>
-
-  <div class="card">
-    <div class="row">
-      <div class="col-md-4 text-center">
-        <img src="" alt="">
-        <img src="https://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png"
-          alt="login form" class="img-fluid" style="border-radius: 1rem; height: 150px; margin-top: 50px;" />
-      </div>
       <div class="col-md-8">
-        <div class="card-body ">
-          <h3>Tu información Personal</h3>
-
-          <p class="card-text mt-5"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="currentColor"
-              class="bi bi-person" viewBox="0 0 16 16">
-              <path
-                d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
-            </svg>
-            <%= user %> 
-          </p>
-
-          <p class="card-text mt-5"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="currentColor"
-              class="bi bi-envelope" viewBox="0 0 16 16">
-              <path
-                d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
-            </svg>
-            <%= email %>  
-          </p>
-
-          <br>
-          <br>
-          <a href="/logout">
-            <div class="button">
-              <div class="button-wrapper">
-                <div class="text">Cerrar Sesión</div>
-                <span class="icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="2em" height="2em">
-                    <path d="M17.5 16.5v-2h-5v-2h5v-2l4 3.5-4 3.5zM3 3h10v3h-1V4H4v16h8v-2h1v3H3z" />
-                  </svg>
-                </span>
-              </div>
-            </div>
-          </a>
-
-
+        <div class="card">
+          <div class="bg uwu"></div>
+          <div class="bg"></div>
+          <div class="content">
+                <div class="img">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"></path></svg>
+                </div>
+                <br>
+                <div>
+                  <h5>Nombre de Usuario</h5>
+                  <h6><%= user %></h6>
+                </div>
+                <div class="text-center">
+                  <div>
+                    <h5>Correo Electronico</h5>
+                    <h6><%= email %></h6>
+                  </div>
+                  <br>
+                  <a href="/logout">
+                    <div class="button">
+                      <div class="button-wrapper">
+                        <div class="text">Cerrar Sesión</div>
+                        <span class="icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="2em" height="2em">
+                            <path d="M17.5 16.5v-2h-5v-2h5v-2l4 3.5-4 3.5zM3 3h10v3h-1V4H4v16h8v-2h1v3H3z" />
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                </div>
+               
+                </a>
+                </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+
 
   <!-- Importa los scripts de Bootstrap -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

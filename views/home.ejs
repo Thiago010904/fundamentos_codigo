@@ -7,22 +7,202 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inicio</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates&family=Orbitron:wght@800&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/3ab1775d52.js" crossorigin="anonymous"></script>
 </head>
 <style>
-  .card {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 40vh;
-    border-radius: 5px;
-    border-width: 5px;
-    background: white;
-    border-color: #2196F3;
-    background-color: transparent;
-    backdrop-filter: blur(5px);
-    background-color: rgba(255, 255, 255, 0.5);
 
+.btn-conteiner {
+
+  justify-content: center;
+  --color-text: #ffffff;
+  --color-background: #ff135a;
+  --color-outline: #ff145b80;
+  --color-shadow: #00000080;
+}
+
+.btn-content {
+  display: flex;
+  align-items: center;
+  padding: 5px 30px;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 30px;
+  color: var(--color-text);
+  background: var(--color-background);
+  transition: 1s;
+  border-radius: 5px;
+  box-shadow: 0 0 0.2em 0 var(--color-background);
+}
+
+.btn-content:hover, .btn-content:focus {
+  transition: 0.5s;
+  -webkit-animation: btn-content 1s;
+  animation: btn-content 1s;
+  outline: 0.1em solid transparent;
+  outline-offset: 0.2em;
+  box-shadow: 0 0 0.4em 0 var(--color-background);
+}
+
+.btn-content .icon-arrow {
+  transition: 0.5s;
+  margin-right: 0px;
+  transform: scale(0.6);
+}
+
+.btn-content:hover .icon-arrow {
+  transition: 0.5s;
+  margin-right: 25px;
+}
+
+.icon-arrow {
+  width: 20px;
+  margin-left: 15px;
+  position: relative;
+  top: 6%;
+}
+  
+/* SVG */
+#arrow-icon-one {
+  transition: 0.4s;
+  transform: translateX(-60%);
+}
+
+#arrow-icon-two {
+  transition: 0.5s;
+  transform: translateX(-30%);
+}
+
+.btn-content:hover #arrow-icon-three {
+  animation: color_anim 1s infinite 0.2s;
+}
+
+.btn-content:hover #arrow-icon-one {
+  transform: translateX(0%);
+  animation: color_anim 1s infinite 0.6s;
+}
+
+.btn-content:hover #arrow-icon-two {
+  transform: translateX(0%);
+  animation: color_anim 1s infinite 0.4s;
+}
+
+/* SVG animations */
+@keyframes color_anim {
+  0% {
+    fill: white;
   }
+
+  50% {
+    fill: var(--color-background);
+  }
+
+  100% {
+    fill: white;
+  }
+}
+
+/* Button animations */
+@-webkit-keyframes btn-content {
+  0% {
+    outline: 0.2em solid var(--color-background);
+    outline-offset: 0;
+  }
+}
+
+@keyframes btn-content {
+  0% {
+    outline: 0.2em solid var(--color-background);
+    outline-offset: 0;
+  }
+}
+  .card1 {
+  width: 200px;
+  height: 510px;
+  border-radius: 4px;
+  background: #f5f2f2;
+  display: flex;
+  gap: 5px;
+  padding: .4em;
+}
+
+.card1 p {
+  height: 100%;
+  flex: 1;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all .5s;
+  background: #ffffff;
+  border: 1px solid #00f7ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card1 p:hover {
+  flex: 4;
+}
+
+.card1 p span {
+  min-width: 14em;
+  padding: .5em;
+  text-align: center;
+  transform: rotate(-90deg);
+  transition: all .5s;
+  text-transform: uppercase;
+  color: #00f7ff;
+  letter-spacing: .1em;
+}
+
+.card1 p:hover span {
+  transform: rotate(0);
+}
+
+   body {
+    background-color: #f5f2f2;
+  }
+  .modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+  border-radius: 5px;
+  border-color: red;
+}
+
+.modal-content {
+  background-color: #ffffff;
+  margin: 15% auto;
+  padding: 20px;
+  border: 3px solid #ff0000;
+  width: 50%;
+}
+.card {
+ cursor: pointer;
+ width: 500px;
+ height: 500px;
+ background: rgb(255, 255, 255);
+ border-radius: 5px;
+ border: 1px solid rgba(0, 0, 255, .2);
+ transition: all .2s;
+ box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+}
+
+.card:hover {
+ box-shadow: -12px 12px 2px -1px rgba(0, 0, 255, .2);
+}
+
+
+
 
   .card-body {
     max-width: 600px;
@@ -39,125 +219,97 @@
     width: 100%;
   }
 
-  .hero {
-    position: relative;
-    min-height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    padding-bottom: 100px;
-  }
-
-  .hero h1 {
-    position: relative;
-    z-index: 1;
-    opacity: 2;
-  }
-
-  .hero:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('https://fondosmil.com/fondo/2258.jpg') center/cover;
-    opacity: 0.7;
-  }
-
   .company-info {
     padding: 20px;
     text-align: center;
   }
 
   button {
-    font-family: inherit;
-    font-size: 18px;
-    background: linear-gradient(to bottom, #4dc7d9 0%, #66a6ff 100%);
-    color: white;
-    padding: 0.8em 1.2em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    border-radius: 25px;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s;
-  }
+ width: 150px;
+ height: 50px;
+ cursor: pointer;
+ display: flex;
+ align-items: center;
+ background: red;
+ border: none;
+ border-radius: 5px;
+ box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+ background: #e62222;
+}
 
-  button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
-  }
+button, button span {
+ transition: 200ms;
+}
 
-  button:active {
-    transform: scale(0.95);
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-  }
+button .text {
+ transform: translateX(35px);
+ color: white;
+ font-weight: bold;
+}
 
-  button span {
-    display: block;
-    margin-left: 0.4em;
-    transition: all 0.3s;
-  }
+button .icon {
+ position: absolute;
+ border-left: 1px solid #c41b1b;
+ transform: translateX(110px);
+ height: 40px;
+ width: 40px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
 
-  button svg {
-    width: 18px;
-    height: 18px;
-    fill: white;
-    transition: all 0.3s;
-  }
+button svg {
+ width: 15px;
+ fill: #eee;
+}
 
-  button .svg-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.2);
-    margin-right: 0.5em;
-    transition: all 0.3s;
-  }
+button:hover {
+ background: #ff3636;
+}
 
-  button:hover .svg-wrapper {
-    background-color: rgba(255, 255, 255, 0.5);
-  }
+button:hover .text {
+ color: transparent;
+}
 
-  button:hover svg {
-    transform: rotate(45deg);
-  }
+button:hover .icon {
+ width: 150px;
+ border-left: none;
+ transform: translateX(0);
+}
 
-  * {
+button:focus {
+ outline: none;
+}
+
+button:active .icon svg {
+ transform: scale(0.8);
+}
+
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
   }
-
+  
   body {
-    margin: 0;
-    padding: 0;
     font-family: 'calibri';
   }
-
+  
   header {
-    background: #1163ff;
+    background: #ffffff;
     width: 100%;
     clear: both;
     content: '';
     display: table;
   }
-
+  
   .menu {
     width: 900px;
     margin: 0 auto;
     display: flex;
-    align-items: center;
-    /* Centramos verticalmente los elementos */
+    align-items: center; /* Centramos verticalmente los elementos */
   }
-
+  
   #auxilium {
     width: 100px;
     height: auto;
@@ -165,32 +317,32 @@
     transform: scale(2.1);
     pointer-events: none;
   }
-
+  
   nav {
     flex-grow: 1;
   }
-
+  
   nav ul {
-    display: flex;
-    justify-content: flex-end;
+    display: flex; 
+    justify-content: flex-end; 
     list-style: none;
   }
-
+  
   nav ul li {
-    margin-left: 20px;
+    margin-left: 20px; 
   }
-
+  
   nav ul li a {
     text-decoration: none;
-    color: white;
+    color: black;
     font-weight: bold;
     text-transform: uppercase;
   }
-
+  
   nav ul li a:hover {
     color: #5ce1e6;
   }
-
+  
   nav ul li a::before {
     display: block;
     content: '';
@@ -200,7 +352,7 @@
     top: 0;
     transition: width 0.2s;
   }
-
+  
   nav ul li a:hover::before {
     width: 100%;
   }
@@ -219,70 +371,96 @@
       </nav>
     </div>
   </header>
-  <div class="hero">
-    <h1>SERVICIO DE AMBULANCIA A LA MANO</h1>
-    <div class="request-form">
-      <div class="card">
-        <div class="row">
-          <div class="col-md-4 text-center">
-            <br>
-            <img
-              src="https://media.istockphoto.com/id/665771398/es/foto/un-mont%C3%B3n-de-veh%C3%ADculo-van-de-la-ambulancia-del-servicio-de-ambulancias-de-londres-estacionado.jpg?s=612x612&w=0&k=20&c=VQCsTnBbk3KQtdAH1sg768cALzQaim9GhIbx5QUBvjo="
-              alt="login form" class="img-fluid" style="margin-top: 50px;" />
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <form action="/enviar-correo" method="POST">
-                <h3 class="text-center">Formulario de Servicio</h3>
-                <br>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <label for="nombre">Télefono</label>
-                    <input type="number" class="form-control" name="nombre" id="phoneNumber">
-                  </div>
-                  <div class="col-sm-6">
-                    <label for="direccion">Dirección</label>
-                    <input type="text" class="form-control" name="direccion" id="direccion">
-                  </div>
-                </div>
-                <br>
-                <div class="text-center">
-                  <button type="button" onclick="alerta('ambulancia')">
-                    <div class="svg-wrapper">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                        <path fill="none" d="M0 0h24v24H0z"></path>
-                        <path fill="currentColor"
-                          d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z">
-                        </path>
-                      </svg>
-                    </div>
-                    <span>Enviar solicitud</span>
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-
+  <div>
+    <div class="row justify-content">
+      <div class="col-sm-5 px-5">
+        <br><br><br>
+        <div class="card">
+          <h1 class="mt-4 px-3" style="font-family: 'Montserrat Alternates', sans-serif;
+          font-family: 'Orbitron', sans-serif;">En Auxilium</h1><br><br>
+          <h4 class="px-3">nos preocupamos por brindarte una experiencia completa e intuitiva.
+            <br> Nuestro objetivo es facilitar y agilizar el trámite de solicitud de servicios en línea, sin importar su tipo. <br>
+            Con nuestra plataforma, podrás realizar tus solicitudes de manera rápida y eficiente, ahorrando tiempo y costos<br>
+            operativos. Ya no dependerás de la disponibilidad de un operador, ya que podrás acceder a nuestros servicios en <br>
+            cualquier momento.<br></h4>
         </div>
-
+        
       </div>
-
+      <div class="col-sm-5">
+        <div class="col-sm-4 mt-3">
+          <div class="input-group">
+            <div id="modal" class="modal">
+                <div class="modal-content card-body">
+                  <div class="row">
+                    <div class="col-sm-11 text-center">
+                      <h2 class=""> Solicitar Ambulancia de Emergencia</h2>
+                    </div>
+                    <div class="col-sm-1">
+                      <a class="cerrar">
+                        <i class="fa-solid fa-x fa-sm text-danger"></i>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col-sm-12">
+                      <div class="request-form">
+                          <div class="row">
+                            <div class="col-md-8">
+                              <div class="card-body">
+                                <form action="/enviar-correo" method="POST">
+                                  <br>
+                                  <div class="row">
+                                    <div class="col-sm-6">
+                                      <label for="nombre">Télefono</label>
+                                      <input type="number" class="form-control" name="nombre" id="phoneNumber">
+                                    </div>
+                                    <div class="col-sm-6">
+                                      <label for="direccion">Dirección</label>
+                                      <input type="text" class="form-control" name="direccion" id="direccion">
+                                    </div>
+                                  </div>
+                                  <br>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="form-group row text-center">
+                        <div class="col-sm-12">                   
+                          <button class="noselect"><span class="text" onclick="alerta('ambulancia')">Solicitar</span><span class="icon"><i class="fa-solid  fa-sm fa-truck-medical"></i></span></button>
+                        </div>
+                      </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>                                            
+          </div>
+        </div>
+      </div>
+      <iframe class="mt-5" width="560" height="400" src="https://www.gifss.com/transportes/ambulancias/ambulancia-04.gif" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="btn-conteiner">
+        <a class="btn-content" href="#" onclick="mostrarModal()" style="width: 560px;">
+          <span class="btn-title">Urgencia Médica</span>
+          <span class="icon-arrow">
+            <svg width="66px" height="43px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="arrow" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <path id="arrow-icon-one" d="M40.1543933,3.89485454 L43.9763149,0.139296592 C44.1708311,-0.0518420739 44.4826329,-0.0518571125 44.6771675,0.139262789 L65.6916134,20.7848311 C66.0855801,21.1718824 66.0911863,21.8050225 65.704135,22.1989893 C65.7000188,22.2031791 65.6958657,22.2073326 65.6916762,22.2114492 L44.677098,42.8607841 C44.4825957,43.0519059 44.1708242,43.0519358 43.9762853,42.8608513 L40.1545186,39.1069479 C39.9575152,38.9134427 39.9546793,38.5968729 40.1481845,38.3998695 C40.1502893,38.3977268 40.1524132,38.395603 40.1545562,38.3934985 L56.9937789,21.8567812 C57.1908028,21.6632968 57.193672,21.3467273 57.0001876,21.1497035 C56.9980647,21.1475418 56.9959223,21.1453995 56.9937605,21.1432767 L40.1545208,4.60825197 C39.9574869,4.41477773 39.9546013,4.09820839 40.1480756,3.90117456 C40.1501626,3.89904911 40.1522686,3.89694235 40.1543933,3.89485454 Z" fill="#FFFFFF"></path>
+                <path id="arrow-icon-two" d="M20.1543933,3.89485454 L23.9763149,0.139296592 C24.1708311,-0.0518420739 24.4826329,-0.0518571125 24.6771675,0.139262789 L45.6916134,20.7848311 C46.0855801,21.1718824 46.0911863,21.8050225 45.704135,22.1989893 C45.7000188,22.2031791 45.6958657,22.2073326 45.6916762,22.2114492 L24.677098,42.8607841 C24.4825957,43.0519059 24.1708242,43.0519358 23.9762853,42.8608513 L20.1545186,39.1069479 C19.9575152,38.9134427 19.9546793,38.5968729 20.1481845,38.3998695 C20.1502893,38.3977268 20.1524132,38.395603 20.1545562,38.3934985 L36.9937789,21.8567812 C37.1908028,21.6632968 37.193672,21.3467273 37.0001876,21.1497035 C36.9980647,21.1475418 36.9959223,21.1453995 36.9937605,21.1432767 L20.1545208,4.60825197 C19.9574869,4.41477773 19.9546013,4.09820839 20.1480756,3.90117456 C20.1501626,3.89904911 20.1522686,3.89694235 20.1543933,3.89485454 Z" fill="#FFFFFF"></path>
+                <path id="arrow-icon-three" d="M0.154393339,3.89485454 L3.97631488,0.139296592 C4.17083111,-0.0518420739 4.48263286,-0.0518571125 4.67716753,0.139262789 L25.6916134,20.7848311 C26.0855801,21.1718824 26.0911863,21.8050225 25.704135,22.1989893 C25.7000188,22.2031791 25.6958657,22.2073326 25.6916762,22.2114492 L4.67709797,42.8607841 C4.48259567,43.0519059 4.17082418,43.0519358 3.97628526,42.8608513 L0.154518591,39.1069479 C-0.0424848215,38.9134427 -0.0453206733,38.5968729 0.148184538,38.3998695 C0.150289256,38.3977268 0.152413239,38.395603 0.154556228,38.3934985 L16.9937789,21.8567812 C17.1908028,21.6632968 17.193672,21.3467273 17.0001876,21.1497035 C16.9980647,21.1475418 16.9959223,21.1453995 16.9937605,21.1432767 L0.15452076,4.60825197 C-0.0425130651,4.41477773 -0.0453986756,4.09820839 0.148075568,3.90117456 C0.150162624,3.89904911 0.152268631,3.89694235 0.154393339,3.89485454 Z" fill="#FFFFFF"></path>
+              </g>
+            </svg>
+          </span> 
+        </a>
+      </div>
+      </div>
+      <div class="col-sm-2" style="margin-top: 60px;">
+        <div class="card1">
+          <p><span><i class="fa-brands fa-instagram"></i></span></p>
+          <p><span><i class="fa-brands fa-twitter"></i></span></p>
+          <p><span><i class="fa-brands fa-facebook"></i></span></p>
+      </div>
+      </div>
+      </div>
     </div>
-  </div>
-  <div class="company-info">
-    <p>
-      Nuestro objetivo es facilitar y agilizar el trámite de solicitud de servicios en línea, sin importar su tipo. <br>
-      Con nuestra plataforma, podrás realizar tus solicitudes de manera rápida y eficiente, ahorrando tiempo y costos<br>
-      operativos. Ya no dependerás de la disponibilidad de un operador, ya que podrás acceder a nuestros servicios en <br>
-      cualquier momento.<br>
-      <br>
-      En Auxilium nos preocupamos por brindarte una experiencia completa e intuitiva. Hemos diseñado una interfaz<br>
-      amigable, con una navegación sencilla y funcionalidades accesibles en pocos clics. Además, nos hemos asegurado de<br>
-      utilizar fuentes legibles, tamaños responsables y colores visibles para garantizar una experiencia agradable para<br>
-      todo tipo de usuarios.
-    </p>
-  </div>
-
   <!-- Importa los scripts de Bootstrap -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -329,6 +507,19 @@
           })
       }
     }
+
+
+
+    function mostrarModal() {
+      document.getElementById("modal").style.display = "block";
+    }
+
+    const modal = document.getElementById('modal');
+    const closeButton = document.getElementsByClassName('cerrar')[0];
+
+    closeButton.addEventListener('click', () => {
+      modal.style.display = 'none'; // hides the modal
+    });
   </script>
 </body>
 
