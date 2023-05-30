@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const botonSeleccionado = params.get('botonSeleccionado')
+        function rechazo(tipo) {
+            Swal.fire({
+                title: '¿Estas seguro?',
+                text: "¿Quieres rechazar el servicio?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, rechazar'
+            })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire(
+                            'Pedido rechazado :(',
+                            '',
+                            'success'
+                        )
+                        if (tipo === "plomero" || tipo === "decorador" || tipo === "reparacion" || tipo === "carpintero" || tipo === "electricista" || tipo === "pintor" || tipo === "albañil") {
+                            const nombre = params.get('nombre');
+                            const direccion = params.get('direccion');
+                            const textdescrip = params.get('textdescrip');
+                            const phoneNumber = params.get('phoneNumber');
+                            const fecha = params.get('fecha');
+                            fetch('/enviar-correo', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+
+                                body: JSON.stringify({ button: botonSeleccionado, nombre: nombre, direccion: direccion, textdescrip: textdescrip, phoneNumber: phoneNumber, fecha: fecha })
+                            })
+                        }
+                        else {
+                            const nombre = params.get('nombre');
+                            const direccion = params.get('direccion');
+                            const numhabs = params.get('numhabs');
+                            const phoneNumber = params.get('phoneNumber');
+                            const fecha = params.get('fecha');
+                            fetch('/enviar-correo', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+
+                                body: JSON.stringify({ button: botonSeleccionado, nombre: nombre, direccion: direccion, numhabs: numhabs, phoneNumber: phoneNumber, fecha: fecha })
+                            })
+                        }
+                    }
+                })
+
+        }
+
+    </script>
+</head>
+
+<body onload="rechazo(botonSeleccionado)">
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+
+</html>

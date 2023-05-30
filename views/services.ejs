@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Nuestros servicios</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
+</head>
+
+<style>
+    button {
+        outline: 0;
+        border: 0;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 200px;
+        height: 50px;
+        border-radius: 0.5em;
+        box-shadow: 0 0.625em 1em 0 rgba(33, 220, 211, 0.35);
+        overflow: hidden;
+
+    }
+
+    button div {
+        transform: translateY(0px);
+        width: 100%;
+
+    }
+
+
+    button,
+    button div {
+        transition: 0.6s cubic-bezier(.16, 1, .3, 1);
+
+    }
+
+    button div span {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 50px;
+        padding: 0.75em 1.125em;
+
+    }
+
+    button div:nth-child(1) {
+        background-color: #ffffff;
+    }
+
+    button div:nth-child(2) {
+        background-color: #ffffff;
+    }
+
+    button:hover {
+        box-shadow: 0 0.625em 1em 0 rgba(33, 220, 211, 0.35);
+    }
+
+    button:hover div {
+        transform: translateY(-50px);
+    }
+
+    button p {
+        font-size: 17px;
+        font-weight: bold;
+        color: #000000;
+    }
+
+    button:active {
+        transform: scale(0.95);
+    }
+
+    h1.display-4 {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    #logo {
+        height: 268px;
+        width: 350px;
+        overflow: hidden;
+        border-radius: 50px;
+    }
+
+    .row {
+        margin-top: 15px;
+    }
+
+    .img-fluid {
+        width: 180px;
+        height: 180px;
+        border-radius: 50px;
+    }
+
+    * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'calibri';
+  }
+
+  header {
+    width: 100%;
+    clear: both;
+    content: '';
+    display: table;
+  }
+
+  .menu {
+    width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    color: black;
+    /* Centramos verticalmente los elementos */
+  }
+
+  #auxilium {
+    width: 100px;
+    height: auto;
+    transition: transform 0.3s ease;
+    transform: scale(2.1);
+    pointer-events: none;
+  }
+
+  nav {
+    flex-grow: 1;
+  }
+
+  nav ul {
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+  }
+
+  nav ul li {
+    margin-left: 20px;
+  }
+
+  nav ul li a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  nav ul li a:hover {
+    color: #5ce1e6;
+  }
+
+  nav ul li a::before {
+    display: block;
+    content: '';
+    width: 0%;
+    background: #5ce1e6;
+    height: 5px;
+    top: 0;
+    transition: width 0.2s;
+  }
+
+  nav ul li a:hover::before {
+    width: 100%;
+  }
+</style>
+<body>
+    <header>
+        <div class="menu">
+          <img src="https://i.ibb.co/tzKdyRp/zyro-image.png" id="auxilium">
+          <nav>
+            <ul>
+              <li><a href="/home">Inicio</a></li>
+              <li><a href="/services">Nuestros Servicios</a></li>
+              <li><a href="/perfil"><%= user %></a></li>
+            </ul>
+          </nav>
+          <h5 class="px-3" style="display: flex;justify-content: flex-end;">/Servicios</h5>
+        </div>
+      </header>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="d-flex flex-column align-items-center mx-auto">
+                <img src="https://i.pinimg.com/564x/55/98/e9/5598e9e05451cfe19efeee89cc063953.jpg" class="img-fluid">
+                <a href="/plomero">
+                    <button>
+                        <div>
+                            <span>
+                                <p>Solicitar</p>
+                            </span>
+                        </div>
+                        <div>
+                            <span>
+                                <p>Plomero</p>
+                            </span>
+                        </div>
+                    </button>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="d-flex flex-column align-items-center mx-auto">
+                <img src="https://i.pinimg.com/564x/6b/94/fc/6b94fcf3a3e8873c59b6cb9329968c4c.jpg" class="img-fluid">
+                <a href="/decorador">
+                    <button>
+                        <div>
+                            <span>
+                                <p>Solicitar</p>
+                            </span>
+                        </div>
+                        <div>
+                            <span>
+                                <p>Decorador</p>
+                            </span>
+                        </div>
+                    </button>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="d-flex flex-column align-items-center mx-auto">
+                <img src="https://i.pinimg.com/564x/23/1b/0f/231b0fd6df7ee21b021b2bd269221976.jpg" class="img-fluid">
+                <a href="/fumigador">
+                    <button>
+                        <div>
+                            <span>
+                                <p>Solicitar</p>
+                            </span>
+                        </div>
+                        <div>
+                            <span>
+                                <p>Fumigador</p>
+                            </span>
+                        </div>
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="d-flex flex-column align-items-center mx-auto">
+                <img src="https://i.pinimg.com/564x/08/96/78/0896789cfb91b2e9282cefb4b38a2fd3.jpg" class="img-fluid">
+                <a href="/reparacion">
+                    <button>
+                        <div>
+                            <span>
+                                <p>Solicitar</p>
+                            </span>
+                        </div>
+                        <div>
+                            <span>
+                                <p>Reparacion</p>
+                            </span>
+                        </div>
+                    </button>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="d-flex flex-column align-items-center mx-auto">
+                <img src="https://i.pinimg.com/564x/db/2e/b2/db2eb2e6b63112a52502134ec3d06103.jpg" class="img-fluid">
+                <a href="/carpinteria">
+                    <button>
+                        <div>
+                            <span>
+                                <p>Solicitar</p>
+                            </span>
+                        </div>
+                        <div>
+                            <span>
+                                <p>Carpinteria</p>
+                            </span>
+                        </div>
+                    </button>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="d-flex flex-column align-items-center mx-auto">
+                <img src="https://i.pinimg.com/564x/ee/0d/e8/ee0de87787fc2cd6c592a43547d073d0.jpg" class="img-fluid">
+                <a href="/electricidad">
+                    <button>
+                        <div>
+                            <span>
+                                <p>Solicitar</p>
+                            </span>
+                        </div>
+                        <div>
+                            <span>
+                                <p>Electricista</p>
+                            </span>
+                        </div>
+                    </button>
+                </a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="d-flex flex-column align-items-center mx-auto">
+                    <img src="https://i.pinimg.com/564x/17/21/2a/17212aabcaaed815b3c1849ff21364ee.jpg"
+                        class="img-fluid">
+                    <a href="/pintura">
+                        <button>
+                            <div>
+                                <span>
+                                    <p>Solicitar</p>
+                                </span>
+                            </div>
+                            <div>
+                                <span>
+                                    <p>Pintor</p>
+                                </span>
+                            </div>
+                        </button>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="d-flex flex-column align-items-center mx-auto">
+                    <img src="https://i.pinimg.com/564x/c8/af/1c/c8af1cd5f635344df79e94860b0fc148.jpg"
+                        class="img-fluid">
+                    <a href="/limpieza">
+                        <button>
+                            <div>
+                                <span>
+                                    <p>Solicitar</p>
+                                </span>
+                            </div>
+                            <div>
+                                <span>
+                                    <p>Limpieza</p>
+                                </span>
+                            </div>
+                        </button>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="d-flex flex-column align-items-center mx-auto">
+                    <img src="https://i.pinimg.com/564x/05/cb/de/05cbde457510e80f90aab8f657307f9a.jpg"
+                        class="img-fluid">
+                    <a href="/albanil">
+                        <button>
+                            <div>
+                                <span>
+                                    <p>Solicitar</p>
+                                </span>
+                            </div>
+                            <div>
+                                <span>
+                                    <p>Albañil</p>
+                                </span>
+                            </div>
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+</body>
+
+</html>
