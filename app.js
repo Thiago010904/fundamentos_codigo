@@ -233,7 +233,7 @@ app.post('/enviar-correo', (req, res) => {
   const email = req.session.userData.email;
 
   function correoAleatorio() {
-    var listaCorreos = [ 'juanpabloaguirreosorio@gmail.com','alejandromarin203@gmail.com', 'santiagoxox09@gmail.com'];
+    var listaCorreos = ['alejandromarin203@gmail.com', 'juanpabloaguirreosorio@gmail.com', 'santiagoxox09@gmail.com'];
     var fecha = req.body.fecha;
     var dia = moment(fecha).format("dddd");
 
