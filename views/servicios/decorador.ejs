@@ -159,9 +159,10 @@
         <ul>
           <li><a href="/home">Inicio</a></li>
           <li><a href="/services">Nuestros Servicios</a></li>
-          <li><a href="/perfil">Perfil</a></li>
+          <li><a href="/perfil"><%= user %></a></li>
         </ul>
       </nav>
+      <h5 class="px-3" style="display: flex;justify-content: flex-end;">>Servicios>Decorador</h5>
     </div>
   </header>
   <h1 class="text-center">
@@ -206,10 +207,6 @@
               <div class="col-sm-5">
                 <label for="">Fecha</label>
                 <input type="date" class="form-control" name="fecha" id="fecha">
-              </div>
-              <div class="col-sm-5">
-                <label for="">Fecha</label>
-                <input type="time" class="form-control" name="fecha" id="fecha">
               </div>
             </div>
             <br>

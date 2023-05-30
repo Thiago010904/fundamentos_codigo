@@ -40,54 +40,84 @@ app.get('/rechazo', (req, res) => {
 // SERVICIOS //
 app.get('/plomero', (req, res) => {
   if (!req.session.login) { res.redirect('/login'); return; }
-  res.render('servicios/plomero');
+  var Dataview = {
+    'user': req.session.userData.username
+  }
+  res.render('servicios/plomero', Dataview);
 });
 
 app.get('/decorador', (req, res) => {
   if (!req.session.login) { res.redirect('/login'); return; }
-  res.render('servicios/decorador');
+  var Dataview = {
+    'user': req.session.userData.username
+  }
+  res.render('servicios/decorador',Dataview);
 });
 
 app.get('/fumigador', (req, res) => {
   if (!req.session.login) { res.redirect('/login'); return; }
-  res.render('servicios/fumigador');
+  var Dataview = {
+    'user': req.session.userData.username
+  }
+  res.render('servicios/fumigador',Dataview);
 });
 
 app.get('/reparacion', (req, res) => {
   if (!req.session.login) { res.redirect('/login'); return; }
-  res.render('servicios/reparacion');
+  var Dataview = {
+    'user': req.session.userData.username
+  }
+  res.render('servicios/reparacion',Dataview);
 });
 
 app.get('/carpinteria', (req, res) => {
   if (!req.session.login) { res.redirect('/login'); return; }
-  res.render('servicios/carpinteria');
+  var Dataview = {
+    'user': req.session.userData.username
+  }
+  res.render('servicios/carpinteria', Dataview);
 });
 
 app.get('/electricidad', (req, res) => {
   if (!req.session.login) { res.redirect('/login'); return; }
-  res.render('servicios/electricidad');
+  var Dataview = {
+    'user': req.session.userData.username
+  }
+  res.render('servicios/electricidad', Dataview);
 });
 
 app.get('/pintura', (req, res) => {
   if (!req.session.login) { res.redirect('/login'); return; }
-  res.render('servicios/pintura');
+  var Dataview = {
+    'user': req.session.userData.username
+  }
+  res.render('servicios/pintura', Dataview);
 });
 
 app.get('/limpieza', (req, res) => {
   if (!req.session.login) { res.redirect('/login'); return; }
-  res.render('servicios/limpieza');
+  var Dataview = {
+    'user': req.session.userData.username
+  }
+  res.render('servicios/limpieza', Dataview);
 });
 
 app.get('/albanil', (req, res) => {
   if (!req.session.login) { res.redirect('/login'); return; }
-  res.render('servicios/albanil');
+  var Dataview = {
+    'user': req.session.userData.username
+  }
+  res.render('servicios/albanil', Dataview);
 });
 
 app.get('/home', (req, res) => {
   if (!req.session.login) { res.redirect('/login'); return; }
-  //console.log('SESSION USERNAME HOME ', req.session.username)
-
-  res.render('home');
+  console.log('SESSION USERNAME HOME ', req.session.userData.username)
+  var Dataview = {
+    'user': req.session.userData.username
+  }
+  console.log('HOME DATAVIEW', Dataview)
+  res.render('home', Dataview);
 });
 
 // Ruta para mostrar el formulario de inicio de sesión
@@ -126,7 +156,7 @@ app.get('/register-error', (req, res) => {
 app.get('/services', (req, res) => {
   if (!req.session.login) { res.redirect('/login'); return; }
   var Dataview = {
-    'user': req.session.username
+    'user': req.session.userData.username
   }
   res.render('services', Dataview);
 });
@@ -285,7 +315,7 @@ app.post('/enviar-correo', (req, res) => {
               <div>
                   <div style="padding: 10px">
                   <p style="text-align: center;">
-                  <a href="mailto:${email}?subject=Solicitud%20aceptada&body=Su%20pedido%20ha%20sido%20confirmado" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 16px;">Aceptar</a>
+                  <a href="mailto:${email}?subject=Solicitud%20aceptada&body=Su%20pedido%20ha%20sido%20confirmado.%20Para%20cancelar%20este%20servicio%20responda%20a%20este%20correo.%20CANCELAR" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 16px;">Aceptar</a>
                   </p>
                   <p style="text-align: center;">
                   <a href="${rechazarLink}" style="display: inline-block; background-color: #FF0000; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;  text-decoration: none; font-size: 16px;">Rechazar</a>
@@ -346,7 +376,7 @@ app.post('/enviar-correo', (req, res) => {
               <div>
                   <div style="padding: 10px">
                   <p style="text-align: center;">
-                  <a href="mailto:${email}?subject=Solicitud%20aceptada&body=Su%20pedido%20ha%20sido%20confirmado" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 16px;">Aceptar</a>
+                  <a href="mailto:${email}?subject=Solicitud%20aceptada&body=Su%20pedido%20ha%20sido%20confirmado.%20Para%20cancelar%20este%20servicio%20responda%20a%20este%20correo.%20CANCELAR" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 16px;">Aceptar</a>
                   </p>
                   <p style="text-align: center;">
                   <a href="${rechazarLink}" style="display: inline-block; background-color: #FF0000; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;  text-decoration: none; font-size: 16px;">Rechazar</a>
@@ -404,7 +434,7 @@ app.post('/enviar-correo', (req, res) => {
               <div>
                   <div style="padding: 10px">
                   <p style="text-align: center;">
-                  <a href="mailto:${email}?subject=Solicitud%20aceptada&body=Su%20pedido%20ha%20sido%20confirmado" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 16px;">Aceptar</a>
+                  <a href="mailto:${email}?subject=Solicitud%20aceptada&body=Su%20pedido%20ha%20sido%20confirmado.%20Para%20cancelar%20este%20servicio%20responda%20a%20este%20correo.%20CANCELAR" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 16px;">Aceptar</a>
                   </p>
                   <p style="text-align: center;">
                   <a href="${rechazarLink}" style="display: inline-block; background-color: #FF0000; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;  text-decoration: none; font-size: 16px;">Rechazar</a>
@@ -467,7 +497,7 @@ app.post('/enviar-correo', (req, res) => {
               <div>
                   <div style="padding: 10px">
                   <p style="text-align: center;">
-                  <a href="mailto:${email}?subject=Solicitud%20aceptada&body=Su%20pedido%20ha%20sido%20confirmado" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 16px;">Aceptar</a>
+                  <a href="mailto:${email}?subject=Solicitud%20aceptada&body=Su%20pedido%20ha%20sido%20confirmado.%20Para%20cancelar%20este%20servicio%20responda%20a%20este%20correo.%20CANCELAR" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 16px;">Aceptar</a>
                   </p>
                   <p style="text-align: center;">
                   <a href="${rechazarLink}" style="display: inline-block; background-color: #FF0000; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;  text-decoration: none; font-size: 16px;">Rechazar</a>
@@ -527,7 +557,7 @@ app.post('/enviar-correo', (req, res) => {
               <div>
                   <div style="padding: 10px">
                   <p style="text-align: center;">
-                  <a href="mailto:${email}?subject=Solicitud%20aceptada&body=Su%20pedido%20ha%20sido%20confirmado" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 16px;">Aceptar</a>
+                  <a href="mailto:${email}?subject=Solicitud%20aceptada&body=Su%20pedido%20ha%20sido%20confirmado.%20Para%20cancelar%20este%20servicio%20responda%20a%20este%20correo.%20CANCELAR" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 16px;">Aceptar</a>
                   </p>
                   <p style="text-align: center;">
                   <a href="${rechazarLink}" style="display: inline-block; background-color: #FF0000; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;  text-decoration: none; font-size: 16px;">Rechazar</a>
@@ -588,7 +618,7 @@ app.post('/enviar-correo', (req, res) => {
               <div>
                   <div style="padding: 10px">
                   <p style="text-align: center;">
-                  <a href="mailto:${email}?subject=Solicitud%20aceptada&body=Su%20pedido%20ha%20sido%20confirmado" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 16px;">Aceptar</a>
+                  <a href="mailto:${email}?subject=Solicitud%20aceptada&body=Su%20pedido%20ha%20sido%20confirmado.%20Para%20cancelar%20este%20servicio%20responda%20a%20este%20correo.%20CANCELAR" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 16px;">Aceptar</a>
                   </p>
                   <p style="text-align: center;">
                   <a href="${rechazarLink}" style="display: inline-block; background-color: #FF0000; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;  text-decoration: none; font-size: 16px;">Rechazar</a>
@@ -648,7 +678,7 @@ app.post('/enviar-correo', (req, res) => {
               <div>
                   <div style="padding: 10px">
                   <p style="text-align: center;">
-                  <a href="mailto:${email}?subject=Solicitud%20aceptada&body=Su%20pedido%20ha%20sido%20confirmado" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 16px;">Aceptar</a>
+                  <a href="mailto:${email}?subject=Solicitud%20aceptada&body=Su%20pedido%20ha%20sido%20confirmado.%20Para%20cancelar%20este%20servicio%20responda%20a%20este%20correo.%20CANCELAR" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 16px;">Aceptar</a>
                   </p>
                   <p style="text-align: center;">
                   <a href="${rechazarLink}" style="display: inline-block; background-color: #FF0000; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;  text-decoration: none; font-size: 16px;">Rechazar</a>
@@ -706,7 +736,7 @@ app.post('/enviar-correo', (req, res) => {
               <div>
                   <div style="padding: 10px">
                   <p style="text-align: center;">
-                  <a href="mailto:${email}?subject=Solicitud%20aceptada&body=Su%20pedido%20ha%20sido%20confirmado" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 16px;">Aceptar</a>
+                  <a href="mailto:${email}?subject=Solicitud%20aceptada&body=Su%20pedido%20ha%20sido%20confirmado.%20Para%20cancelar%20este%20servicio%20responda%20a%20este%20correo.%20CANCELAR" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 16px;">Aceptar</a>
                   </p>
                   <p style="text-align: center;">
                   <a href="${rechazarLink}" style="display: inline-block; background-color: #FF0000; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;  text-decoration: none; font-size: 16px;">Rechazar</a>
@@ -766,7 +796,7 @@ app.post('/enviar-correo', (req, res) => {
               <div>
                   <div style="padding: 10px">
                   <p style="text-align: center;">
-                  <a href="mailto:${email}?subject=Solicitud%20aceptada&body=Su%20pedido%20ha%20sido%20confirmado" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 16px;">Aceptar</a>
+                  <a href="mailto:${email}?subject=Solicitud%20aceptada&body=Su%20pedido%20ha%20sido%20confirmado.%20Para%20cancelar%20este%20servicio%20responda%20a%20este%20correo.%20CANCELAR" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 16px;">Aceptar</a>
                   </p>
                   <p style="text-align: center;">
                   <a href="${rechazarLink}" style="display: inline-block; background-color: #FF0000; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;  text-decoration: none; font-size: 16px;">Rechazar</a>
@@ -820,7 +850,7 @@ app.post('/enviar-correo', (req, res) => {
               <div>
                   <div style="padding: 10px">
                   <p style="text-align: center;">
-                  <a href="mailto:${email}?subject=Solicitud%20aceptada&body=Su%20pedido%20ha%20sido%20confirmado" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 16px;">Aceptar</a>
+                  <a href="mailto:${email}?subject=Solicitud%20aceptada&body=Su%20pedido%20ha%20sido%20confirmado.%20Para%20cancelar%20este%20servicio%20responda%20a%20este%20correo.%20CANCELAR" style="display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 16px;">Aceptar</a>
                   </p>
                   </div>
               </div>

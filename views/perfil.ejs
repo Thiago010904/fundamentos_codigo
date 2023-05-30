@@ -312,9 +312,10 @@
         <ul>
           <li><a href="/home">Inicio</a></li>
           <li><a href="/services">Nuestros Servicios</a></li>
-          <li><a href="/perfil">Perfil</a></li>
+          <li><a href="/perfil"><%= user %></a></li>
         </ul>
       </nav>
+      <h5 class="px-3" style="display: flex;justify-content: flex-end;">>Perfil</h5>
     </div>
   </header>
       <div class="col-md-8">
@@ -327,7 +328,7 @@
                 </div>
                 <br>
                 <div>
-                  <h5>Nombre de Usuario</h5>
+                  <h5>Nombre</h5>
                   <h6><%= user %></h6>
                 </div>
                 <div class="text-center">

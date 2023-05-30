@@ -98,26 +98,29 @@
     margin: 0;
     box-sizing: border-box;
   }
-  
+
   body {
+    margin: 0;
+    padding: 0;
     font-family: 'calibri';
   }
-  
+
   header {
-    background: #ffffff;
     width: 100%;
     clear: both;
     content: '';
     display: table;
   }
-  
+
   .menu {
-    width: 900px;
+    width: 1300px;
     margin: 0 auto;
     display: flex;
-    align-items: center; /* Centramos verticalmente los elementos */
+    align-items: center;
+    color: black;
+    /* Centramos verticalmente los elementos */
   }
-  
+
   #auxilium {
     width: 100px;
     height: auto;
@@ -125,32 +128,32 @@
     transform: scale(2.1);
     pointer-events: none;
   }
-  
+
   nav {
     flex-grow: 1;
   }
-  
+
   nav ul {
-    display: flex; 
-    justify-content: flex-end; 
+    display: flex;
+    justify-content: flex-end;
     list-style: none;
   }
-  
+
   nav ul li {
-    margin-left: 20px; 
+    margin-left: 20px;
   }
-  
+
   nav ul li a {
     text-decoration: none;
-    color: black;
+    color: rgb(0, 0, 0);
     font-weight: bold;
     text-transform: uppercase;
   }
-  
+
   nav ul li a:hover {
     color: #5ce1e6;
   }
-  
+
   nav ul li a::before {
     display: block;
     content: '';
@@ -160,7 +163,7 @@
     top: 0;
     transition: width 0.2s;
   }
-  
+
   nav ul li a:hover::before {
     width: 100%;
   }
@@ -173,9 +176,10 @@
             <ul>
               <li><a href="/home">Inicio</a></li>
               <li><a href="/services">Nuestros Servicios</a></li>
-              <li><a href="/perfil">Perfil</a></li>
+              <li><a href="/perfil"><%= user %></a></li>
             </ul>
           </nav>
+          <h5 class="px-3" style="display: flex;justify-content: flex-end;">>Servicios</h5>
         </div>
       </header>
     <div class="row">
